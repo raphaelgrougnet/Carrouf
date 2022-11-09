@@ -1,7 +1,23 @@
 "use strict";
 
 const btnAjouterArticle = document.getElementById("btnAjouter");
+let btnSuprrArticle = document.getElementById("btnSuppr0");
 let cpt = 1;
+
+
+
+
+/**
+ * Fonction qui supprime un article de la page
+ * @param {Event} e Evenement du click
+ */
+ function gererClicSupprimerArticle(e){
+    let nb = e.target.id.substring(e.target.id.length,e.target.id.length-1);
+    let divSuppr = document.getElementById("divPrincipale"+nb);
+    divSuppr.remove();
+
+}
+
 
 /**
  * Fonction qui ajoute un article a la page
@@ -9,7 +25,8 @@ let cpt = 1;
 function gererClicAjouterArticle(){
     let divCommande = document.getElementById("commande");
     let divPrincipale = document.createElement("div");
-    divPrincipale.classList = "row bg-primary rounded mb-2";
+    divPrincipale.id = "divPrincipale"+cpt;
+    divPrincipale.classList = "row bg-primary rounded mb-2 pt-3";
 
     ///     ID
 
@@ -18,7 +35,7 @@ function gererClicAjouterArticle(){
     let labelId = document.createElement("label");
     let inputId = document.createElement("input");
     let contenuId = document.createTextNode("Id");
-    divId.classList = "m-3 col-md-2";
+    divId.classList = "mb-3 col-lg-4 col-xl-1";
     labelId.classList = "form-label";
     labelId.for = "idProduit"+cpt;
     labelId.appendChild(contenuId);
@@ -40,7 +57,7 @@ function gererClicAjouterArticle(){
     let labelNom = document.createElement("label");
     let inputNom = document.createElement("input");
     let contenuNom = document.createTextNode("Nom de l'article");
-    divNom.classList = "m-3 col-md-2";
+    divNom.classList = "mb-3 col-lg-4 col-xl-3";
     labelNom.classList = "form-label";
     labelNom.for = "idProduit"+cpt;
     labelNom.appendChild(contenuNom);
@@ -65,7 +82,7 @@ function gererClicAjouterArticle(){
     let labelQte = document.createElement("label");
     let inputQte = document.createElement("input");
     let contenuQte = document.createTextNode("Quantité");
-    divQte.classList = "m-3 col-md-2";
+    divQte.classList = "mb-3 col-lg-4 col-xl-2";
     labelQte.classList = "form-label";
     labelQte.for = "qteProduit"+cpt;
     labelQte.appendChild(contenuQte);
@@ -81,10 +98,12 @@ function gererClicAjouterArticle(){
     divQte.appendChild(inputQte);
     divPrincipale.appendChild(divQte);
 
+    
+    
 
 
 
-    ///     QUANTITE
+    ///     PRIX UNITAIRE
 
     
 
@@ -92,7 +111,7 @@ function gererClicAjouterArticle(){
     let labelPrixU = document.createElement("label");
     let inputPrixU = document.createElement("input");
     let contenuPrixU = document.createTextNode("Prix unitaire");
-    divPrixU.classList = "m-3 col-md-2";
+    divPrixU.classList = "mb-3 col-lg-6 col-xl-3";
     labelPrixU.classList = "form-label";
     labelPrixU.for = "prixUProduit"+cpt;
     labelPrixU.appendChild(contenuPrixU);
@@ -111,7 +130,7 @@ function gererClicAjouterArticle(){
 
 
 
-
+    ///     PRIX TOTAL
 
 
 
@@ -119,7 +138,7 @@ function gererClicAjouterArticle(){
     let labelPrixT = document.createElement("label");
     let inputPrixT = document.createElement("input");
     let contenuPrixT = document.createTextNode("Prix total");
-    divPrixT.classList = "m-3 col-md-2";
+    divPrixT.classList = "mb-3 col-lg-6 col-xl-3";
     labelPrixT.classList = "form-label";
     labelPrixT.for = "prixTProduit"+cpt;
     labelPrixT.appendChild(contenuPrixT);
@@ -136,9 +155,24 @@ function gererClicAjouterArticle(){
     divPrixT.appendChild(inputPrixT);
     divPrincipale.appendChild(divPrixT);
 
+
+    
+    let btn = document.createElement("button");
+    btn.id = "btnSuppr"+cpt;
+    btn.classList = "btn btn-danger rounded-bottom";
+    let contenueBtn = document.createElement("i");
+    contenueBtn.classList = "bi bi-dash-circle";
+    btn.appendChild(contenueBtn);
+
+    divPrincipale.appendChild(btn);
+    btn.addEventListener("click", gererClicSupprimerArticle,false);
+    
     divCommande.appendChild(divPrincipale);
     cpt++;
 }
+
+
+
 
 
 /**
@@ -147,6 +181,7 @@ function gererClicAjouterArticle(){
 function initialisation(){
 
     btnAjouterArticle.addEventListener("click",gererClicAjouterArticle,false);
+    btnSuprrArticle.addEventListener("click", gererClicSupprimerArticle, false);
 }
 
 
