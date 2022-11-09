@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script.js" defer></script>
+    <script src="js/script.js" defer="defer"></script>
 
     <title>Carrouf</title>
 </head>
@@ -42,7 +42,7 @@
                                 <a class="dropdown-item" href="#">Nourriture</a>
                                 <a class="dropdown-item" href="#">Jouets</a>
                                 <a class="dropdown-item" href="#">Jeux vidéos</a>
-                                
+
                                 <a class="dropdown-item" href="#">Produits ménagers</a>
                             </div>
                         </li>
@@ -58,30 +58,78 @@
         </nav>
     </header>
     <main>
-        <div class="container m-5 border border-2 p-5 rounded-5">
-            <h2 class="mb-4 text-center">Connexion</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="telephone" class="form-label">Numéro de téléphone</label>
-                    <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="telephone" aria-labelledby="phoneHelp">
-                    <div id="phoneHelp" class="form-text">Format : 123-456-7890</div>
+        <div class="d-flex align-items-center flex-column">
+            <div class="container m-5 mb-3 border border-2 p-5 rounded-5">
+                <h1 class="mb-4 text-center fs-2">Information client</h1>
+                <form>
+                    <div class="mb-3">
+                        <label for="telephone" class="form-label">Numéro de téléphone</label>
+                        <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" id="telephone"
+                            aria-labelledby="phoneHelp">
+                        <div id="phoneHelp" class="form-text">Format : 123-456-7890</div>
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="courriel" class="form-label">Courriel</label>
+                        <input type="email" class="form-control" id="courriel">
+
+                    </div>
+                    <div class="mb-3">
+                        <label for="adresse" class="form-label">Adresse</label>
+                        <input type="text" class="form-control" id="adresse">
+                    </div>
+
+                    <a id="btn-new-client" class="btn btn-secondary" href="new_client.html">Nouveau client</a>
+                </form>
+
+                <hr class="solid m-5">
+
+                <h1 class="mb-4 text-center fs-2">Commande</h1>
+                <div>
+                    <div class="col" id="commande">
+                        <div class="row bg-primary rounded mb-2">
+                            <div class="m-3 col-md-2">
+                                <label for="idProduit0" class="form-label">Id</label>
+                                <input type="text" class="form-control" id="idProduit0" name="idProduit0"
+                                    placeholder="Id">
+                            </div>
+                            <div class="m-3 col-md-2">
+                                <label for="nomProduit0" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="nomProduit0" name="nomProduit0"
+                                    placeholder="Nom du produit" readonly>
+                            </div>
+                            <div class="m-3 col-md-2">
+                                <label for="qteProduit0" class="form-label">Quantité</label>
+                                <input type="text" class="form-control" id="qteProduit0" name="qteProduit0"
+                                    placeholder="Quantité">
+                            </div>
+                            <div class="m-3 col-md-2">
+                                <label for="prixUProduit0" class="form-label">Prix unitaire</label>
+                                <input type="text" class="form-control" id="prixUProduit0" name="prixUProduit0"
+                                    placeholder="Prix unitaire" readonly>
+                            </div>
+                            <div class="m-3 col-md-2">
+                                <label for="prixTProduit0" class="form-label">Prix total</label>
+                                <input type="text" class="form-control" id="prixTProduit0" name="prixTProduit0"
+                                    placeholder="Prix total" readonly>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
                     
                 </div>
-                <div class="mb-3">
-                    <label for="courriel" class="form-label">Courriel</label>
-                    <input type="email" class="form-control" id="courriel">
-                    
+
+                <div>
+                    <button id="btnAjouter" class="btn btn-primary">Ajouter un article <i class="bi bi-plus-circle"></i></button>
                 </div>
-                <div class="mb-3">
-                    <label for="adresse" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" id="adresse">
-                </div>
-                
-                <button id="btn-new-client" class="btn btn-secondary">Nouveau client</button>
-                <button type="submit" class="btn btn-primary">Connexion</button>
-            </form>
+            </div>
+
+
+
         </div>
-        
+
+
     </main>
     <footer></footer>
 
@@ -89,7 +137,9 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
