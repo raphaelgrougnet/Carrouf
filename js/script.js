@@ -6,7 +6,9 @@ let btnSupprArticle = document.getElementById("btnSuppr0");
 let inputQteArticle = document.getElementById("qteProduit0");
 let inputIdArticle = document.getElementById("idProduit0");
 let inputNumTel = document.getElementById("telephone");
+let inputEmail = document.getElementById("courriel");
 let cpt = 1;
+const regexCourriel =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 let listArticles = document.getElementById("commande");
 
@@ -14,15 +16,14 @@ let progressBar = 0;
 
 
 /**
- * Permet de mettre a jour la datalist des numero de telephone et entrer les informations quand le numero est bon
+ * Met a jour les infos du client si le numero de telephone est correct
  * @param {Event} e Evenement
  */
 function validationNumero(e){
     let inputCourriel = document.getElementById("courriel");
     let inputAdresse = document.getElementById("adresse");
     let inputNom = document.getElementById("nom");
-    let listeNum = document.getElementById("suggestNum");
-    if(e.target.value.trim().length >= 8){
+    if(!regexCourriel.test(e.target.value.trim())){
         for(let numbers in clients){
             if(numbers == e.target.value.trim()){
                 e.target.classList.remove("is-invalid");
@@ -49,6 +50,8 @@ function validationNumero(e){
         e.target.classList.remove("is-valid");
         e.target.classList.remove("is-invalid");
     }
+
+
     //let option = document.createElement("option");
     //if(e.target.value.trim().length >=2){
     //    
@@ -63,6 +66,43 @@ function validationNumero(e){
 
 }
 
+
+/**
+ * Met a jour les infos du client si le courriel est correct
+ * @param {Event} e Evenement
+ */
+function validationCourriel(e){
+    let inputNum = document.getElementById("telephone");
+    let inputAdresse = document.getElementById("adresse");
+    let inputNom = document.getElementById("nom");
+    if(e.target.value.trim().length >= 8){
+        for(let emails in telephonesParCourriel){
+            if(emails == e.target.value.trim()){
+                e.target.classList.remove("is-invalid");
+                e.target.classList.add("is-valid");
+                
+                inputNum.value = clients[telephonesParCourriel[emails]].courriel;
+                inputAdresse.value = clients[telephonesParCourriel[emails]].adresse;
+                inputNom.value = clients[telephonesParCourriel[emails]].nom;
+            }
+        }
+        
+    }
+    else{
+        
+        inputNum.value = "";
+        inputAdresse.value = "";
+        inputNom.value = "";
+        e.target.classList.remove("is-valid");
+        e.target.classList.add("is-invalid");
+        
+    }
+
+    if(e.target.value.trim() === ""){
+        e.target.classList.remove("is-valid");
+        e.target.classList.remove("is-invalid");
+    }
+}
 
 /**
  * Fonction qui supprime un article de la page
@@ -345,6 +385,7 @@ function initialisation(){
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
     inputIdArticle.addEventListener("change", gererUpdateId, false);
     inputNumTel.addEventListener("input", validationNumero, false);
+    inputEmail.addEventListener("change",validationCourriel,false);
     //listArticles.push(document.getElementById("divPrincipale0"));
 }
 
