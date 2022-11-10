@@ -94,7 +94,7 @@
                         <div id="divPrincipale0" class="row bg-primary rounded mb-5 pt-3">
                             <div class="mb-3 col-lg-4 col-xl-1">
                                 <label for="idProduit0" class="form-label">Id</label>
-                                <input type="text" class="form-control" id="idProduit0" name="idProduit0"
+                                <input type="text" class="form-control inputId" id="idProduit0" name="idProduit0"
                                     placeholder="Id">
                             </div>
                             <div class="mb-3 col-lg-4 col-xl-3">
@@ -104,7 +104,7 @@
                             </div>
                             <div class="mb-3 col-lg-4 col-xl-2">
                                 <label for="qteProduit0" class="form-label">Quantité</label>
-                                <input type="number" class="form-control" id="qteProduit0" name="qteProduit0"
+                                <input type="number" class="form-control inputQte" id="qteProduit0" name="qteProduit0"
                                     placeholder="Quantité" min=1>
                             </div>
                             <div class="mb-3 col-lg-6 col-xl-3">
@@ -119,12 +119,17 @@
                                 <label for="prixTProduit0" class="form-label">Prix total</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
-                                    <input type="text" class="form-control" id="prixTProduit0" name="prixTProduit0"
+                                    <input type="text" class="form-control inputPrixT" id="prixTProduit0" name="prixTProduit0"
                                     placeholder="Prix total" readonly>
                                   </div>
                             </div>
-                            <button id="btnSuppr0" class="btn btn-danger rounded-bottom" disabled><i class="bi bi-dash-circle"></i></button>
+                            <button id="btnSuppr0" class="btn btn-danger rounded-bottom" disabled><i id="iiiSuppr0" class="bi bi-dash-circle"></i></button>
                         </div>
+                    </div>
+
+                    <div>
+                        <button id="btnAjouter2" class="btn btn-primary mb-2">Ajouter un article <i class="bi bi-plus-circle"></i></button>
+                        
                     </div>
                 </div>
 

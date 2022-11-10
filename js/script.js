@@ -1,6 +1,7 @@
 "use strict";
 
 const btnAjouterArticle = document.getElementById("btnAjouter");
+const btnAjouterArticle2 = document.getElementById("btnAjouter2");
 let btnSupprArticle = document.getElementById("btnSuppr0");
 let inputQteArticle = document.getElementById("qteProduit0");
 let cpt = 1;
@@ -77,7 +78,7 @@ function gererClicAjouterArticle(){
     labelId.appendChild(contenuId);
 
 
-    inputId.classList = "form-control";
+    inputId.classList = "form-control inputId";
     inputId.type = "text";
     inputId.id = "idProduit"+cpt;
     inputId.name = "idProduit"+cpt;
@@ -124,7 +125,7 @@ function gererClicAjouterArticle(){
     labelQte.appendChild(contenuQte);
 
 
-    inputQte.classList = "form-control";
+    inputQte.classList = "form-control inputQte";
     inputQte.type = "number";
     inputQte.id = "qteProduit"+cpt;
     inputQte.name = "qteProduit"+cpt;
@@ -195,7 +196,7 @@ function gererClicAjouterArticle(){
     labelPrixT.appendChild(contenuPrixT);
 
 
-    inputPrixT.classList = "form-control";
+    inputPrixT.classList = "form-control inputPrixT";
     inputPrixT.type = "text";
     inputPrixT.id = "prixTProduit"+cpt;
     inputPrixT.name = "prixTProduit"+cpt;
@@ -218,6 +219,7 @@ function gererClicAjouterArticle(){
     btn.id = "btnSuppr"+cpt;
     btn.classList = "btn btn-danger rounded-bottom";
     let contenueBtn = document.createElement("i");
+    contenueBtn.id = "iiiSuppr"+cpt;
     contenueBtn.classList = "bi bi-dash-circle";
     btn.appendChild(contenueBtn);
 
@@ -225,8 +227,13 @@ function gererClicAjouterArticle(){
     btn.addEventListener("click", gererClicSupprimerArticle,false);
     
 
-
-    divPrincipale.classList.add("animatedin");
+    if(cpt%2 > 0){
+        divPrincipale.classList.add("animatedin");
+    }
+    else{
+        divPrincipale.classList.add("animatedout");
+    }
+    
     
 
     //listArticles.push(divPrincipale);
@@ -245,6 +252,7 @@ function gererClicAjouterArticle(){
 function initialisation(){
 
     btnAjouterArticle.addEventListener("click",gererClicAjouterArticle,false);
+    btnAjouterArticle2.addEventListener("click",gererClicAjouterArticle,false);
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
     //listArticles.push(document.getElementById("divPrincipale0"));
