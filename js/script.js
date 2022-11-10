@@ -4,6 +4,7 @@ const btnAjouterArticle = document.getElementById("btnAjouter");
 const btnAjouterArticle2 = document.getElementById("btnAjouter2");
 let btnSupprArticle = document.getElementById("btnSuppr0");
 let inputQteArticle = document.getElementById("qteProduit0");
+let inputIdArticle = document.getElementById("idProduit0");
 let cpt = 1;
 
 let listArticles = document.getElementById("commande");
@@ -54,7 +55,38 @@ function gererUpdatePrix(e){
     }
 }
 
-
+/**
+ * Fonction qui met a jour le nom et le prix unitaire de l'article quand l'id est saisis
+ * @param {*} e Evenement
+ */
+function gererUpdateId(e){
+    let nb = e.target.id.substring(9,e.target.id.length);
+    let divNom = document.getElementById("nomProduit"+nb);
+    let divPrix = document.getElementById("prixUProduit"+nb);
+    let divQte = document.getElementById("qteProduit"+nb);
+    if(e.target.value.trim() !== "" && !isNaN(e.target.value.trim())){
+        for (let article in catalogue) {
+            if(e.target.value.trim() === article){
+                divNom.value = catalogue[article].titre;
+                divPrix.value = catalogue[article].prix;
+                e.target.classList.remove("is-invalid");
+                e.target.classList.add("is-valid");
+                divQte.readOnly = false;
+                divQte.focus();
+            }
+        }
+    }
+    else{
+        divNom.value = "";
+        divPrix.value = "";
+        e.target.classList.remove("is-valid");
+        e.target.classList.add("is-invalid");
+        divQte.classList.remove("is-invalid");
+        divQte.readOnly = true;
+        divQte.value = "";
+    }
+    
+}
 
 /**
  * Fonction qui ajoute un article a la page
@@ -88,6 +120,8 @@ function gererClicAjouterArticle(){
     divId.appendChild(inputId);
     divPrincipale.appendChild(divId);
     
+    inputId.addEventListener("change", gererUpdateId, false);
+
     ///     NOM
 
     let divNom = document.createElement("div");
@@ -131,6 +165,7 @@ function gererClicAjouterArticle(){
     inputQte.name = "qteProduit"+cpt;
     inputQte.placeholder = "Quantité";
     inputQte.min = 1;
+    inputQte.readOnly = true;
     
     divQte.appendChild(labelQte);
     divQte.appendChild(inputQte);
@@ -255,6 +290,7 @@ function initialisation(){
     btnAjouterArticle2.addEventListener("click",gererClicAjouterArticle,false);
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
+    inputIdArticle.addEventListener("change", gererUpdateId, false);
     //listArticles.push(document.getElementById("divPrincipale0"));
 }
 
