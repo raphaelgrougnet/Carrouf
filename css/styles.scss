@@ -4,3 +4,32 @@
 .row>*{
     flex-shrink: 1;
 }
+
+
+.animatedin{animation: myAnim 1s ease 0s 1 normal forwards;}
+
+.animatedout{animation: myAnim2 1s ease 0s 1 normal forwards;}
+
+@keyframes myAnim {
+	0% {
+		opacity: 0;
+		transform: translateX(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes myAnim2 {
+	0% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateX(250px);
+	}
+}

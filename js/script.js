@@ -1,8 +1,11 @@
 "use strict";
 
 const btnAjouterArticle = document.getElementById("btnAjouter");
-let btnSuprrArticle = document.getElementById("btnSuppr0");
+let btnSupprArticle = document.getElementById("btnSuppr0");
+let inputQteArticle = document.getElementById("qteProduit0");
 let cpt = 1;
+
+let listArticles = document.getElementById("commande");
 
 
 
@@ -12,11 +15,44 @@ let cpt = 1;
  * @param {Event} e Evenement du click
  */
  function gererClicSupprimerArticle(e){
-    let nb = e.target.id.substring(e.target.id.length,e.target.id.length-1);
+    let nb = e.target.id.substring(8,e.target.id.length); ///e.target.id.substring(e.target.id.length,e.target.id.length-1);
+    
+    
     let divSuppr = document.getElementById("divPrincipale"+nb);
-    divSuppr.remove();
+    
+    //for(let i = 0; i < listArticles.length; i++){
+    //    if(listArticles[i].id == divSuppr.id){
+    //        listArticles.splice(i,1);
+    //    }
+    //}
+    ///console.log(listArticles);
+    //console.log("divPrincipale"+nb);
+    //console.log(divSuppr);
+    listArticles.removeChild(divSuppr);
+    //divSuppr.remove();
 
 }
+
+/**
+ * Fonction qui met a jour le prix total en fonction de la quantitée d'article
+ * @param {Event} e Evenement
+ */
+function gererUpdatePrix(e){
+    if(e.target.value > 0){
+        let nbIdQte = e.target.id.substring(10,e.target.id.length);
+        let inputUpdate = document.getElementById("prixTProduit"+nbIdQte);
+        let inputPrixUGet = document.getElementById("prixUProduit"+nbIdQte);
+        inputUpdate.value = parseFloat(e.target.value) * parseFloat(inputPrixUGet.value);
+        
+        e.target.classList.remove("is-invalid");
+        e.target.classList.add("is-valid");
+    }
+    else if(isNaN(parseFloat(e.target.value))){
+        e.target.classList.remove("is-valid");
+        e.target.classList.add("is-invalid");
+    }
+}
+
 
 
 /**
@@ -26,7 +62,7 @@ function gererClicAjouterArticle(){
     let divCommande = document.getElementById("commande");
     let divPrincipale = document.createElement("div");
     divPrincipale.id = "divPrincipale"+cpt;
-    divPrincipale.classList = "row bg-primary rounded mb-2 pt-3";
+    divPrincipale.classList = "row bg-primary rounded mb-5 pt-3";
 
     ///     ID
 
@@ -89,16 +125,17 @@ function gererClicAjouterArticle(){
 
 
     inputQte.classList = "form-control";
-    inputQte.type = "text";
+    inputQte.type = "number";
     inputQte.id = "qteProduit"+cpt;
     inputQte.name = "qteProduit"+cpt;
     inputQte.placeholder = "Quantité";
+    inputQte.min = 1;
     
     divQte.appendChild(labelQte);
     divQte.appendChild(inputQte);
     divPrincipale.appendChild(divQte);
 
-    
+    inputQte.addEventListener("change",gererUpdatePrix,false);
     
 
 
@@ -111,6 +148,12 @@ function gererClicAjouterArticle(){
     let labelPrixU = document.createElement("label");
     let inputPrixU = document.createElement("input");
     let contenuPrixU = document.createTextNode("Prix unitaire");
+    let divGroupPrixU = document.createElement("div");
+    let spanGroupPrixU = document.createElement("span");
+    let contenuSpanPrixU = document.createTextNode("$");
+    spanGroupPrixU.classList = "input-group-text";
+    spanGroupPrixU.appendChild(contenuSpanPrixU);
+    divGroupPrixU.classList = "input-group mb-3";
     divPrixU.classList = "mb-3 col-lg-6 col-xl-3";
     labelPrixU.classList = "form-label";
     labelPrixU.for = "prixUProduit"+cpt;
@@ -125,7 +168,9 @@ function gererClicAjouterArticle(){
     inputPrixU.readOnly = true;
     
     divPrixU.appendChild(labelPrixU);
-    divPrixU.appendChild(inputPrixU);
+    divGroupPrixU.appendChild(spanGroupPrixU);
+    divGroupPrixU.appendChild(inputPrixU);
+    divPrixU.appendChild(divGroupPrixU);
     divPrincipale.appendChild(divPrixU);
 
 
@@ -138,6 +183,12 @@ function gererClicAjouterArticle(){
     let labelPrixT = document.createElement("label");
     let inputPrixT = document.createElement("input");
     let contenuPrixT = document.createTextNode("Prix total");
+    let divGroupPrixT = document.createElement("div");
+    let spanGroupPrixT = document.createElement("span");
+    let contenuSpanPrixT = document.createTextNode("$");
+    spanGroupPrixT.classList = "input-group-text";
+    spanGroupPrixT.appendChild(contenuSpanPrixT);
+    divGroupPrixT.classList = "input-group mb-3";
     divPrixT.classList = "mb-3 col-lg-6 col-xl-3";
     labelPrixT.classList = "form-label";
     labelPrixT.for = "prixTProduit"+cpt;
@@ -152,10 +203,16 @@ function gererClicAjouterArticle(){
     inputPrixT.readOnly = true;
     
     divPrixT.appendChild(labelPrixT);
-    divPrixT.appendChild(inputPrixT);
+    divGroupPrixT.appendChild(spanGroupPrixT);
+    divGroupPrixT.appendChild(inputPrixT);
+    divPrixT.appendChild(divGroupPrixT);
     divPrincipale.appendChild(divPrixT);
 
 
+
+    ///     BTNSUPPR
+
+    
     
     let btn = document.createElement("button");
     btn.id = "btnSuppr"+cpt;
@@ -167,6 +224,13 @@ function gererClicAjouterArticle(){
     divPrincipale.appendChild(btn);
     btn.addEventListener("click", gererClicSupprimerArticle,false);
     
+
+
+    divPrincipale.classList.add("animatedin");
+    
+
+    //listArticles.push(divPrincipale);
+    ///console.log(listArticles);
     divCommande.appendChild(divPrincipale);
     cpt++;
 }
@@ -181,7 +245,9 @@ function gererClicAjouterArticle(){
 function initialisation(){
 
     btnAjouterArticle.addEventListener("click",gererClicAjouterArticle,false);
-    btnSuprrArticle.addEventListener("click", gererClicSupprimerArticle, false);
+    btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
+    inputQteArticle.addEventListener("change",gererUpdatePrix,false);
+    //listArticles.push(document.getElementById("divPrincipale0"));
 }
 
 
