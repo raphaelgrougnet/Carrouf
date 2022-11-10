@@ -17,19 +17,37 @@ let progressBar = 0;
  * Permet de mettre a jour la datalist des numero de telephone et entrer les informations quand le numero est bon
  * @param {Event} e Evenement
  */
-function gererDataListNum(e){
-    
+function validationNumero(e){
+    let inputCourriel = document.getElementById("courriel");
+    let inputAdresse = document.getElementById("adresse");
+    let inputNom = document.getElementById("nom");
     let listeNum = document.getElementById("suggestNum");
-    if(e.target.value.trim().length == 8){
+    if(e.target.value.trim().length >= 8){
         for(let numbers in clients){
             if(numbers == e.target.value.trim()){
+                e.target.classList.remove("is-invalid");
                 e.target.classList.add("is-valid");
-                let inputCourriel = document.getElementById("courriel");
-                let inputAdresse = document.getElementById("adresse");
+                
                 inputCourriel.value = clients[numbers].courriel;
                 inputAdresse.value = clients[numbers].adresse;
+                inputNom.value = clients[numbers].nom;
             }
         }
+        
+    }
+    else{
+        
+        inputCourriel.value = "";
+        inputAdresse.value = "";
+        inputNom.value = "";
+        e.target.classList.remove("is-valid");
+        e.target.classList.add("is-invalid");
+        
+    }
+
+    if(e.target.value.trim() === ""){
+        e.target.classList.remove("is-valid");
+        e.target.classList.remove("is-invalid");
     }
     //let option = document.createElement("option");
     //if(e.target.value.trim().length >=2){
@@ -326,7 +344,7 @@ function initialisation(){
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
     inputIdArticle.addEventListener("change", gererUpdateId, false);
-    inputNumTel.addEventListener("input", gererDataListNum, false);
+    inputNumTel.addEventListener("input", validationNumero, false);
     //listArticles.push(document.getElementById("divPrincipale0"));
 }
 

@@ -67,20 +67,25 @@
                     <div class="mb-3">
                         <label for="telephone" class="form-label">Numéro de téléphone</label>
                         <input type="tel" pattern="[0-9]{3}-[0-9]{4}" class="form-control" id="telephone"
-                            aria-labelledby="phoneHelp" list="suggestNum">
-                        <div id="phoneHelp" class="form-text">Format : 123-456-7890</div>
+                            aria-labelledby="phoneHelp" list="suggestNum" name="telephone">
+                        <div id="phoneHelp" class="form-text">Format : 123-4567</div>
                         <datalist id="suggestNum">
                         </datalist>
 
                     </div>
                     <div class="mb-3">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="nom" name="nom">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="courriel" class="form-label">Courriel</label>
-                        <input type="email" class="form-control" id="courriel">
+                        <input type="email" class="form-control" id="courriel" name="courriel">
 
                     </div>
                     <div class="mb-3">
                         <label for="adresse" class="form-label">Adresse</label>
-                        <input type="text" class="form-control" id="adresse">
+                        <input type="text" class="form-control" id="adresse" name="adresse">
                     </div>
 
                     <a id="btn-new-client" class="btn btn-secondary" href="new_client.html">Nouveau client</a>
