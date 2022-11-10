@@ -35,6 +35,7 @@ let listArticles = document.getElementById("commande");
 
 }
 
+
 /**
  * Fonction qui met a jour le prix total en fonction de la quantitée d'article
  * @param {Event} e Evenement
