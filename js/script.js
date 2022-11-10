@@ -5,11 +5,45 @@ const btnAjouterArticle2 = document.getElementById("btnAjouter2");
 let btnSupprArticle = document.getElementById("btnSuppr0");
 let inputQteArticle = document.getElementById("qteProduit0");
 let inputIdArticle = document.getElementById("idProduit0");
+let inputNumTel = document.getElementById("telephone");
 let cpt = 1;
 
 let listArticles = document.getElementById("commande");
 
+let progressBar = 0;
 
+
+/**
+ * Permet de mettre a jour la datalist des numero de telephone et entrer les informations quand le numero est bon
+ * @param {Event} e Evenement
+ */
+function gererDataListNum(e){
+    
+    let listeNum = document.getElementById("suggestNum");
+    if(e.target.value.trim().length == 8){
+        for(let numbers in clients){
+            if(numbers == e.target.value.trim()){
+                e.target.classList.add("is-valid");
+                let inputCourriel = document.getElementById("courriel");
+                let inputAdresse = document.getElementById("adresse");
+                inputCourriel.value = clients[numbers].courriel;
+                inputAdresse.value = clients[numbers].adresse;
+            }
+        }
+    }
+    //let option = document.createElement("option");
+    //if(e.target.value.trim().length >=2){
+    //    
+    //    for (let numero in clients) {
+    //        if(numero.startsWith(e.target.value.trim())){
+    //            option.value = numero;
+    //            
+    //            listeNum.appendChild(option);
+    //        }
+    //    }
+    //}
+
+}
 
 
 /**
@@ -58,7 +92,7 @@ function gererUpdatePrix(e){
 
 /**
  * Fonction qui met a jour le nom et le prix unitaire de l'article quand l'id est saisis
- * @param {*} e Evenement
+ * @param {Event} e Evenement
  */
 function gererUpdateId(e){
     let nb = e.target.id.substring(9,e.target.id.length);
@@ -292,6 +326,7 @@ function initialisation(){
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
     inputIdArticle.addEventListener("change", gererUpdateId, false);
+    inputNumTel.addEventListener("input", gererDataListNum, false);
     //listArticles.push(document.getElementById("divPrincipale0"));
 }
 

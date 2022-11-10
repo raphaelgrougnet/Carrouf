@@ -67,8 +67,10 @@
                     <div class="mb-3">
                         <label for="telephone" class="form-label">Numéro de téléphone</label>
                         <input type="tel" pattern="[0-9]{3}-[0-9]{4}" class="form-control" id="telephone"
-                            aria-labelledby="phoneHelp">
+                            aria-labelledby="phoneHelp" list="suggestNum">
                         <div id="phoneHelp" class="form-text">Format : 123-456-7890</div>
+                        <datalist id="suggestNum">
+                        </datalist>
 
                     </div>
                     <div class="mb-3">
