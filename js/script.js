@@ -220,7 +220,7 @@ function gererClicAjouterArticle(){
     labelId.appendChild(contenuId);
 
 
-    inputId.classList = "form-control inputId";
+    inputId.classList = "form-control inputId rounded";
     inputId.type = "text";
     inputId.id = "idProduit"+cpt;
     inputId.name = "idProduit"+cpt;
@@ -244,7 +244,7 @@ function gererClicAjouterArticle(){
     labelNom.appendChild(contenuNom);
 
 
-    inputNom.classList = "form-control";
+    inputNom.classList = "form-control rounded";
     inputNom.type = "text";
     inputNom.id = "nomProduit"+cpt;
     inputNom.name = "nomProduit"+cpt;
@@ -269,7 +269,7 @@ function gererClicAjouterArticle(){
     labelQte.appendChild(contenuQte);
 
 
-    inputQte.classList = "form-control inputQte";
+    inputQte.classList = "form-control inputQte rounded";
     inputQte.type = "number";
     inputQte.id = "qteProduit"+cpt;
     inputQte.name = "qteProduit"+cpt;
@@ -306,7 +306,7 @@ function gererClicAjouterArticle(){
     labelPrixU.appendChild(contenuPrixU);
 
 
-    inputPrixU.classList = "form-control";
+    inputPrixU.classList = "form-control inputPrixU";
     inputPrixU.type = "text";
     inputPrixU.id = "prixUProduit"+cpt;
     inputPrixU.name = "prixUProduit"+cpt;

@@ -6,6 +6,14 @@
 }
 
 
+.input-group-text{
+    @extend .rounded-start;
+}
+
+.inputPrixT, .inputPrixU{
+    @extend .rounded-end;
+}
+
 .animatedin{animation: myAnim 1s ease 0s 1 normal forwards;}
 
 .animatedout{animation: myAnim2 1s ease 0s 1 normal forwards;}
