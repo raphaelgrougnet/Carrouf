@@ -1,15 +1,20 @@
 "use strict";
 
 const btnAjouterArticle = document.getElementById("btnAjouter");
-const btnAjouterArticle2 = document.getElementById("btnAjouter2");
+const btnVider = document.getElementById("btnVider");
 let btnSupprArticle = document.getElementById("btnSuppr0");
 let inputQteArticle = document.getElementById("qteProduit0");
 let inputIdArticle = document.getElementById("idProduit0");
 let inputNumTel = document.getElementById("telephone");
 let inputEmail = document.getElementById("courriel");
+let selectLivraison = document.getElementById("selectShipping");
 let cpt = 1;
-const regexCourriel =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+const regexCourriel = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const modesLivraison = {
+    "magasin" : 0,
+    "standard" : 35,
+    "express" : 50
+};
 let listArticles = document.getElementById("commande");
 
 let progressBar = 0;
@@ -23,7 +28,7 @@ function validationNumero(e){
     let inputCourriel = document.getElementById("courriel");
     let inputAdresse = document.getElementById("adresse");
     let inputNom = document.getElementById("nom");
-    if(!regexCourriel.test(e.target.value.trim())){
+    if(e.target.value.trim().length >= 8){
         for(let numbers in clients){
             if(numbers == e.target.value.trim()){
                 e.target.classList.remove("is-invalid");
@@ -75,7 +80,7 @@ function validationCourriel(e){
     let inputNum = document.getElementById("telephone");
     let inputAdresse = document.getElementById("adresse");
     let inputNom = document.getElementById("nom");
-    if(e.target.value.trim().length >= 8){
+    if(!regexCourriel.test(e.target.value.trim())){
         for(let emails in telephonesParCourriel){
             if(emails == e.target.value.trim()){
                 e.target.classList.remove("is-invalid");
@@ -157,7 +162,8 @@ function gererUpdateId(e){
     let divNom = document.getElementById("nomProduit"+nb);
     let divPrix = document.getElementById("prixUProduit"+nb);
     let divQte = document.getElementById("qteProduit"+nb);
-    if(e.target.value.trim() !== "" && !isNaN(e.target.value.trim())){
+    let divPrixT = document.getElementById("prixTProduit"+nb);
+    if(e.target.value.trim() !== "" && !isNaN(e.target.value.trim()) && e.target.value.trim() >= 100 && e.target.value.trim() <= 999){
         for (let article in catalogue) {
             if(e.target.value.trim() === article){
                 divNom.value = catalogue[article].titre;
@@ -172,14 +178,25 @@ function gererUpdateId(e){
     else{
         divNom.value = "";
         divPrix.value = "";
+        divPrixT.value= "";
         e.target.classList.remove("is-valid");
         e.target.classList.add("is-invalid");
         divQte.classList.remove("is-invalid");
+        divQte.classList.remove("is-valid");
         divQte.readOnly = true;
         divQte.value = "";
     }
     
+    
 }
+
+/**
+ * Fonction qui vide tous les articles
+ */
+function gererClicViderArticle(){
+    location.reload();
+}
+
 
 /**
  * Fonction qui ajoute un article a la page
@@ -188,7 +205,7 @@ function gererClicAjouterArticle(){
     let divCommande = document.getElementById("commande");
     let divPrincipale = document.createElement("div");
     divPrincipale.id = "divPrincipale"+cpt;
-    divPrincipale.classList = "row bg-primary rounded mb-5 pt-3";
+    divPrincipale.classList = "row bg-primary rounded mb-3 pt-3";
 
     ///     ID
 
@@ -370,6 +387,22 @@ function gererClicAjouterArticle(){
     cpt++;
 }
 
+/**
+ * 
+ * @param {Event} e Event
+ */
+function gererSelectLivraison(e){
+
+    let comment = document.getElementById("priceShipping");
+    comment.textContent = "";
+    let textSelectLivraison = "Le mode de livraison sélectionné ajoutera $" + modesLivraison[e.target.value] + " CAD à la commande";
+    if(e.target.value == "express"){
+        textSelectLivraison += " plus $10 CAD par item unitaire";
+    }
+    textSelectLivraison += ".";
+    comment.appendChild(document.createTextNode(textSelectLivraison));
+    e.target.classList.add("is-valid");
+}
 
 
 
@@ -380,12 +413,13 @@ function gererClicAjouterArticle(){
 function initialisation(){
 
     btnAjouterArticle.addEventListener("click",gererClicAjouterArticle,false);
-    btnAjouterArticle2.addEventListener("click",gererClicAjouterArticle,false);
+    btnVider.addEventListener("click",gererClicViderArticle,false);
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
     inputIdArticle.addEventListener("change", gererUpdateId, false);
     inputNumTel.addEventListener("input", validationNumero, false);
     inputEmail.addEventListener("change",validationCourriel,false);
+    selectLivraison.addEventListener("input", gererSelectLivraison, false);
     //listArticles.push(document.getElementById("divPrincipale0"));
 }
 
