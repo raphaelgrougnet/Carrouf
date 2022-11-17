@@ -8,8 +8,10 @@ let inputIdArticle = document.getElementById("idProduit0");
 let inputNumTel = document.getElementById("telephone");
 let inputEmail = document.getElementById("courriel");
 let selectLivraison = document.getElementById("selectShipping");
+let listeNum = document.getElementById("suggestNum");
 let cpt = 1;
-const regexCourriel = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+/* eslint-disable no-useless-escape */
+const regexCourriel =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const modesLivraison = {
     "magasin" : 0,
     "standard" : 35,
@@ -57,18 +59,28 @@ function validationNumero(e){
     }
 
 
-    //let option = document.createElement("option");
-    //if(e.target.value.trim().length >=2){
-    //    
-    //    for (let numero in clients) {
-    //        if(numero.startsWith(e.target.value.trim())){
-    //            option.value = numero;
-    //            
-    //            listeNum.appendChild(option);
-    //        }
-    //    }
-    //}
+    
 
+}
+/**
+ * Ajouter les numeros a la liste de suggestion
+ * @param {Event} e Evenement
+ */
+function gererListeSuggestionNumero(e){
+    for(let i = 0; i < listeNum.childNodes.length; i++){
+        listeNum.removeChild(i);
+    }
+    let option = document.createElement("option");
+    if(e.target.value.trim().length >=2){
+        
+        for (let numero in clients) {
+            if(numero.startsWith(e.target.value.trim())){
+                option.value = numero;
+                
+                listeNum.appendChild(option);
+            }
+        }
+    }
 }
 
 
@@ -418,9 +430,11 @@ function initialisation(){
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
     inputIdArticle.addEventListener("change", gererUpdateId, false);
     inputNumTel.addEventListener("input", validationNumero, false);
+    inputNumTel.addEventListener("input", gererListeSuggestionNumero, false);
     inputEmail.addEventListener("change",validationCourriel,false);
     selectLivraison.addEventListener("input", gererSelectLivraison, false);
     //listArticles.push(document.getElementById("divPrincipale0"));
+    
 }
 
 
