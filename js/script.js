@@ -10,6 +10,7 @@ let inputEmail = document.getElementById("courriel");
 let selectLivraison = document.getElementById("selectShipping");
 let listeNum = document.getElementById("suggestNum");
 let cpt = 1;
+
 /* eslint-disable no-useless-escape */
 const regexCourriel =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const modesLivraison = {
@@ -18,7 +19,7 @@ const modesLivraison = {
     "express" : 50
 };
 let listArticles = document.getElementById("commande");
-
+let nbArticles = listArticles.childElementCount;
 let progressBar = 0;
 
 
@@ -67,14 +68,16 @@ function validationNumero(e){
  * @param {Event} e Evenement
  */
 function gererListeSuggestionNumero(e){
-    for(let i = 0; i < listeNum.childNodes.length; i++){
-        listeNum.removeChild(i);
+    while(listeNum.firstChild !== null){
+        listeNum.firstChild.remove();
     }
-    let option = document.createElement("option");
+    
+    
     if(e.target.value.trim().length >=2){
         
         for (let numero in clients) {
             if(numero.startsWith(e.target.value.trim())){
+                let option = document.createElement("option");
                 option.value = numero;
                 
                 listeNum.appendChild(option);
@@ -404,12 +407,19 @@ function gererClicAjouterArticle(){
  * @param {Event} e Event
  */
 function gererSelectLivraison(e){
-
+    let prixLivraisonSommaire = document.getElementById("prixLivraisonSommaire");
     let comment = document.getElementById("priceShipping");
-    comment.textContent = "";
+    comment.firstChild.remove();
     let textSelectLivraison = "Le mode de livraison sélectionné ajoutera $" + modesLivraison[e.target.value] + " CAD à la commande";
     if(e.target.value == "express"){
         textSelectLivraison += " plus $10 CAD par item unitaire";
+        prixLivraisonSommaire.firstChild.replaceWith(50+(10*listArticles.childElementCount)+".00");
+    }
+    if(e.target.value == "standard"){
+        prixLivraisonSommaire.firstChild.replaceWith(35+".00");
+    }
+    if(e.target.value == "magasin"){
+        prixLivraisonSommaire.firstChild.replaceWith("00.00");
     }
     textSelectLivraison += ".";
     comment.appendChild(document.createTextNode(textSelectLivraison));
