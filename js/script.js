@@ -78,18 +78,21 @@ function gererListeSuggestionNumero(e){
         listeNum.firstChild.remove();
     }
     
-    
-    if(e.target.value.trim().length >=2){
+    if(e.target.value.trim().length < 8){
+        if(e.target.value.trim().length >=2){
         
-        for (let numero in clients) {
-            if(numero.startsWith(e.target.value.trim())){
-                let option = document.createElement("option");
-                option.value = numero;
-                
-                listeNum.appendChild(option);
+            for (let numero in clients) {
+                if(numero.startsWith(e.target.value.trim())){
+                    let option = document.createElement("option");
+                    option.value = numero;
+                    
+                    listeNum.appendChild(option);
+                }
             }
         }
     }
+
+    
 }
 
 
@@ -101,7 +104,7 @@ function validationCourriel(e){
     let inputNum = document.getElementById("telephone");
     let inputAdresse = document.getElementById("adresse");
     let inputNom = document.getElementById("nom");
-    if(!regexCourriel.test(e.target.value.trim())){
+    if(regexCourriel.test(e.target.value.trim())){
         for(let emails in telephonesParCourriel){
             if(emails == e.target.value.trim()){
                 e.target.classList.remove("is-invalid");
