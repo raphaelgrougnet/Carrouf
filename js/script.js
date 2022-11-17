@@ -548,7 +548,16 @@ function initialisation(){
     selectLivraison.addEventListener("input", gererSelectLivraison, false);
     selectLivraison.addEventListener("input", gererUpdatePrixTotal, false);
 
-    //listArticles.push(document.getElementById("divPrincipale0"));
+    ///Trucs de bootstrap
+    const toastTrigger = document.getElementById('btnValider');
+    const toastLiveExample = document.getElementById('liveToast');
+    if (toastTrigger) {
+      toastTrigger.addEventListener('click', () => {
+        const toast = new bootstrap.Toast(toastLiveExample);
+    
+        toast.show();
+      });
+    }
     
 }
 
