@@ -18,6 +18,7 @@ const modesLivraison = {
     "standard" : 35,
     "express" : 50
 };
+
 let listArticles = document.getElementById("commande");
 let nbArticles = listArticles.childElementCount;
 let progressBar = 0;

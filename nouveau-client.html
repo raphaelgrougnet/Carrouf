@@ -11,6 +11,7 @@
     <script src="js/catalogue.js" defer="defer"></script>
     <script src="js/clients.js" defer="defer"></script>
     <script src="js/script.js" defer="defer"></script>
+    <script scr="js/nouveau-client.js" defer="defer"></script>
 
     <title>Carrouf</title>
 </head>
@@ -60,8 +61,28 @@
     <main>
         <h1 class="text-center p-2 m-2">Création d'un Nouveau Client</h1>
         <form method="get" action="index.html">
-            
+            <div>
+                <label for="nom-nouveau-client">Nom du Nouveau Client :</label>
+                <input type="text" id="nom-nouveau-client" name="nom-nouveau-client">
+                <div id="msg-nom" class="invalid-feedback">Doit avoir entre 3 et 50 caractères non numérique</div>
+            </div>
+            <div>
+                <label for="adresse-nouveau-client">Adresse du Nouveau Client :</label>
+                <input type="text" id="adresse-nouveau-client" name="adresse-nouveau-client">
+                <div id="msg-adresse" class="invalid-feedback"></div>
+            </div>
+            <div>
+                <label for="courriel-nouveau-client">Courriel du Nouveau Client :</label>
+                <input type="email" id="courriel-nouveau-client" name="courriel-nouveau-client">
+                <div id="msg-courriel" class="invalid-feedback"></div>
+            </div>
+            <div>
+                <label for="cell-nouveau-client">Numéro de téléphone du Nouveau Client :</label>
+                <input type="tel" id="cell-nouveau-client" name="cell-nouveau-client">
+                <div id="msg-cell" class="invalid-feedback"></div>
+            </div>
         </form>
+        <button id="btn-ajouter-nouveau-client" class="btn btn-primary">Ajouter le Nouveau Client</button>
     </main>
 
 
