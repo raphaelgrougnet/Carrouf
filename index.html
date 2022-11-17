@@ -111,24 +111,24 @@
                             </div>
                             <div class="mb-3 col-lg-4 col-xl-3">
                                 <label for="nomProduit0" class="form-label">Nom</label>
-                                <input type="text" class="form-control rounded" id="nomProduit0" name="nomProduit0" placeholder="Nom du produit" readonly>
+                                <input type="text" class="form-control inputNom rounded" id="nomProduit0" name="nomProduit0" placeholder="Nom du produit" readonly>
                             </div>
                             <div class="mb-3 col-lg-4 col-xl-2">
                                 <label for="qteProduit0" class="form-label">Quantité</label>
-                                <input type="number" class="form-control inputQte rounded" id="qteProduit0" name="qteProduit0" placeholder="Quantité" min=1 readonly>
+                                <input type="number" value="1" class="form-control inputQte rounded" id="qteProduit0" name="qteProduit0" placeholder="Quantité" min=1 readonly>
                             </div>
                             <div class="mb-3 col-lg-6 col-xl-3">
                                 <label for="prixUProduit0" class="form-label">Prix unitaire</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
-                                    <input type="text" class="form-control inputPrixU" id="prixUProduit0" name="prixUProduit0" placeholder="Prix unitaire" readonly>
+                                    <input type="text" value="0" class="form-control inputPrixU" id="prixUProduit0" name="prixUProduit0" placeholder="Prix unitaire" readonly>
                                 </div>
                             </div>
                             <div class="mb-3 col-lg-6 col-xl-3">
                                 <label for="prixTProduit0" class="form-label">Prix total</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
-                                    <input type="text" class="form-control inputPrixT" id="prixTProduit0" name="prixTProduit0" placeholder="Prix total" readonly>
+                                    <input type="text" value="0" class="form-control inputPrixT" id="prixTProduit0" name="prixTProduit0" placeholder="Prix total" readonly>
                                 </div>
                             </div>
                             <button id="btnSuppr0" class="btn btn-danger rounded-bottom" disabled><i id="iiiSuppr0"class="bi bi-dash-circle"></i></button>
@@ -155,22 +155,25 @@
                 <h1 class="mb-4 text-center fs-2">Sommaire</h1>
                 
                 <div class="border border-2 rounded p-3 mb-3">
-                    <div id="sommaireArticles">
+                    <div>
                         <div class="d-flex justify-content-between">
                             <p>Nom de l'article</p>
                             <p>Prix</p>
                         </div>
+                        <div id="sommaireArticles">
+
+                        </div>
                         
                     </div>
-                    <hr class="solid m-5">
+                    <hr class="solid m-4">
                     <div class="d-flex justify-content-between">
                         <p class="m-0">Livraison</p>
-                        <p id="prixLivraisonSommaire">00.00</p>
+                        <p id="prixLivraisonSommaire">$00.00</p>
                     </div>
                     <div class="d-flex justify-content-between">
                         
                         <p class="m-0">Total</p>
-                        <p id="prixTotalSommaire">00.00</p>
+                        <p class="m-0" id="prixTotalSommaire">$00.00</p>
                     </div>
                     
                 </div>

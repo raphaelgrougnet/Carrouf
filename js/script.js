@@ -20,7 +20,7 @@ const modesLivraison = {
 };
 
 let listArticles = document.getElementById("commande");
-let nbArticles = listArticles.childElementCount;
+
 let progressBar = 0;
 
 
@@ -126,6 +126,85 @@ function validationCourriel(e){
 }
 
 /**
+ * Fonction qui met a jour la liste des articles dans le sommaire
+ */
+function gererAjouterArticleSommaire(){
+    let divArticlesSommaire = document.getElementById("sommaireArticles");
+    while(divArticlesSommaire.childElementCount > 0){
+        divArticlesSommaire.firstChild.remove();
+    }
+    let listNom = [];
+    let listPrix = [];
+   
+    for(let nom of document.querySelectorAll(".inputNom")){
+        
+        if(nom.value != ""){
+            let nomP = document.createElement("p");
+            nomP.classList = "m-0";
+            nomP.appendChild(document.createTextNode(nom.value));
+            listNom.push(nomP);
+        }
+        
+    }
+    for(let prix of document.querySelectorAll(".inputPrixT")){
+        
+        if(parseFloat(prix.value) != 0){
+            let prixP = document.createElement("p");
+            prixP.classList = "m-0";
+            prixP.appendChild(document.createTextNode("$"+prix.value+".00"));
+            listPrix.push(prixP);
+        }
+        
+    }
+
+    for(let i = 0; i < listNom.length;i++){
+        let div = document.createElement("div");
+        div.classList = "d-flex justify-content-between";
+        div.appendChild(listNom[i]);
+        div.appendChild(listPrix[i]);
+        divArticlesSommaire.appendChild(div);
+    }
+
+    
+
+}
+
+/**
+ * Fonction qui met a jour le prix total de la livraison
+ */
+ function gererUpdatePrixTotal(){
+    let prixTotalSommaire = document.getElementById("prixTotalSommaire");
+    let prixLivraisonSommaire = document.getElementById("prixLivraisonSommaire");
+    let inputsPrixT = document.querySelectorAll(".inputPrixT");
+    let total = 0;
+    for(let prix of inputsPrixT){
+        total += parseFloat(prix.value);
+    }
+    total += parseFloat(prixLivraisonSommaire.textContent.substring(1,prixLivraisonSommaire.textContent.length));
+    prixTotalSommaire.firstChild.replaceWith("$"+total+".00");
+
+}
+
+/**
+ * Fonction qui actualise le prix de la livraison en fonction du nombre d'article
+ */
+ function gererUpdatePrixLivraison(){
+    if(selectLivraison.value === "express"){
+        let prixLivraisonSommaire = document.getElementById("prixLivraisonSommaire");
+        let inputsQte = document.querySelectorAll(".inputQte");
+        let nbArticle = 0;
+        
+        for (let qte of inputsQte) {
+            nbArticle += parseFloat(qte.value);
+        }
+        prixLivraisonSommaire.firstChild.replaceWith("$"+(50+(nbArticle*10))+".00");
+        
+        
+    }
+    
+}
+
+/**
  * Fonction qui supprime un article de la page
  * @param {Event} e Evenement du click
  */
@@ -145,7 +224,9 @@ function validationCourriel(e){
     //console.log(divSuppr);
     listArticles.removeChild(divSuppr);
     //divSuppr.remove();
-
+    gererUpdatePrixLivraison();
+    gererUpdatePrixTotal();
+    gererAjouterArticleSommaire();
 }
 
 
@@ -169,6 +250,7 @@ function gererUpdatePrix(e){
     }
 }
 
+
 /**
  * Fonction qui met a jour le nom et le prix unitaire de l'article quand l'id est saisis
  * @param {Event} e Evenement
@@ -184,26 +266,30 @@ function gererUpdateId(e){
             if(e.target.value.trim() === article){
                 divNom.value = catalogue[article].titre;
                 divPrix.value = catalogue[article].prix;
+                divPrixT.value = divPrix.value*divQte.value;
                 e.target.classList.remove("is-invalid");
                 e.target.classList.add("is-valid");
                 divQte.readOnly = false;
+                
                 divQte.focus();
             }
         }
     }
     else{
         divNom.value = "";
-        divPrix.value = "";
-        divPrixT.value= "";
+        divPrix.value = "0";
+        divPrixT.value= "0";
         e.target.classList.remove("is-valid");
         e.target.classList.add("is-invalid");
         divQte.classList.remove("is-invalid");
         divQte.classList.remove("is-valid");
         divQte.readOnly = true;
-        divQte.value = "";
+        divQte.value = "1";
     }
     
-    
+    gererUpdatePrixLivraison();
+    gererUpdatePrixTotal();
+    gererAjouterArticleSommaire();
 }
 
 /**
@@ -212,6 +298,7 @@ function gererUpdateId(e){
 function gererClicViderArticle(){
     location.reload();
 }
+
 
 
 /**
@@ -260,7 +347,7 @@ function gererClicAjouterArticle(){
     labelNom.appendChild(contenuNom);
 
 
-    inputNom.classList = "form-control rounded";
+    inputNom.classList = "form-control inputNom rounded";
     inputNom.type = "text";
     inputNom.id = "nomProduit"+cpt;
     inputNom.name = "nomProduit"+cpt;
@@ -291,6 +378,7 @@ function gererClicAjouterArticle(){
     inputQte.name = "qteProduit"+cpt;
     inputQte.placeholder = "Quantité";
     inputQte.min = 1;
+    inputQte.value = 1;
     inputQte.readOnly = true;
     
     divQte.appendChild(labelQte);
@@ -298,6 +386,9 @@ function gererClicAjouterArticle(){
     divPrincipale.appendChild(divQte);
 
     inputQte.addEventListener("change",gererUpdatePrix,false);
+    inputQte.addEventListener("change", gererUpdatePrixLivraison,false);
+    inputQte.addEventListener("change", gererUpdatePrixTotal, false);
+    
     
 
 
@@ -328,6 +419,8 @@ function gererClicAjouterArticle(){
     inputPrixU.name = "prixUProduit"+cpt;
     inputPrixU.placeholder = "Prix unitaire";
     inputPrixU.readOnly = true;
+    inputPrixU.value="0";
+    
     
     divPrixU.appendChild(labelPrixU);
     divGroupPrixU.appendChild(spanGroupPrixU);
@@ -363,6 +456,8 @@ function gererClicAjouterArticle(){
     inputPrixT.name = "prixTProduit"+cpt;
     inputPrixT.placeholder = "Prix total";
     inputPrixT.readOnly = true;
+    inputPrixT.value = "0";
+    
     
     divPrixT.appendChild(labelPrixT);
     divGroupPrixT.appendChild(spanGroupPrixT);
@@ -403,6 +498,8 @@ function gererClicAjouterArticle(){
     cpt++;
 }
 
+
+
 /**
  * 
  * @param {Event} e Event
@@ -414,7 +511,7 @@ function gererSelectLivraison(e){
     let textSelectLivraison = "Le mode de livraison sélectionné ajoutera $" + modesLivraison[e.target.value] + " CAD à la commande";
     if(e.target.value == "express"){
         textSelectLivraison += " plus $10 CAD par item unitaire";
-        prixLivraisonSommaire.firstChild.replaceWith(50+(10*listArticles.childElementCount)+".00");
+        prixLivraisonSommaire.firstChild.replaceWith(50+".00");
     }
     if(e.target.value == "standard"){
         prixLivraisonSommaire.firstChild.replaceWith(35+".00");
@@ -425,6 +522,8 @@ function gererSelectLivraison(e){
     textSelectLivraison += ".";
     comment.appendChild(document.createTextNode(textSelectLivraison));
     e.target.classList.add("is-valid");
+
+    gererUpdatePrixLivraison();
 }
 
 
@@ -439,11 +538,16 @@ function initialisation(){
     btnVider.addEventListener("click",gererClicViderArticle,false);
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
+    inputQteArticle.addEventListener("change", gererUpdatePrixLivraison,false);
+    inputQteArticle.addEventListener("change", gererUpdatePrixTotal, false);
+    inputQteArticle.addEventListener("change", gererAjouterArticleSommaire,false);
     inputIdArticle.addEventListener("change", gererUpdateId, false);
     inputNumTel.addEventListener("input", validationNumero, false);
     inputNumTel.addEventListener("input", gererListeSuggestionNumero, false);
     inputEmail.addEventListener("change",validationCourriel,false);
     selectLivraison.addEventListener("input", gererSelectLivraison, false);
+    selectLivraison.addEventListener("input", gererUpdatePrixTotal, false);
+
     //listArticles.push(document.getElementById("divPrincipale0"));
     
 }
