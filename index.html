@@ -85,7 +85,8 @@
 
                     <div class="mb-3">
                         <label for="courriel" class="form-label">Courriel</label>
-                        <input type="email" class="form-control rounded" id="courriel" name="courriel">
+                        <input type="email" aria-labelledby="mailHelp" class="form-control rounded" id="courriel" name="courriel">
+                        <div id="mailHelp" class="form-text">Ex : exemple@courriel.ca</div>
                         <div class="invalid-feedback">
                             Courriel incorrect.
                         </div>
@@ -148,7 +149,7 @@
                     </div>
                     <div class="p-3">
                         <select id="selectShipping" class="form-select rounded" aria-label="Mode de livraison">
-                            <option selected disabled>Selectionnez un mode de livraison</option>
+                            <option value="unselected" selected disabled>Selectionnez un mode de livraison</option>
                             <option value="magasin">Chercher en magasin</option>
                             <option value="standard">Livraison standard</option>
                             <option value="express">Livraison express</option>
@@ -177,12 +178,12 @@
                     <hr class="solid m-4">
                     <div class="d-flex justify-content-between">
                         <p class="m-0">Livraison</p>
-                        <p id="prixLivraisonSommaire">$00.00</p>
+                        <p id="prixLivraisonSommaire">$0.00</p>
                     </div>
                     <div class="d-flex justify-content-between">
 
                         <p class="m-0">Total</p>
-                        <p class="m-0" id="prixTotalSommaire">$00.00</p>
+                        <p class="m-0" id="prixTotalSommaire">$0.00</p>
                     </div>
 
                 </div>

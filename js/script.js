@@ -5,10 +5,15 @@ const btnVider = document.getElementById("btnVider");
 let btnSupprArticle = document.getElementById("btnSuppr0");
 let inputQteArticle = document.getElementById("qteProduit0");
 let inputIdArticle = document.getElementById("idProduit0");
+let inputNomArticle = document.getElementById("nomProduit0");
 let inputNumTel = document.getElementById("telephone");
 let inputEmail = document.getElementById("courriel");
 let selectLivraison = document.getElementById("selectShipping");
 let listeNum = document.getElementById("suggestNum");
+let inputPrixUArticle = document.getElementById("prixUProduit0");
+let inputPrixTArticle = document.getElementById("prixTProduit0");
+
+
 let cpt = 1;
 
 /* eslint-disable no-useless-escape */
@@ -201,6 +206,10 @@ function gererAjouterArticleSommaire(){
         
         
     }
+    if(selectLivraison.value === "unselected"){
+        let prixLivraisonSommaire = document.getElementById("prixLivraisonSommaire");
+        prixLivraisonSommaire.firstChild.replaceWith("$0.00");
+    }
     
 }
 
@@ -295,8 +304,52 @@ function gererUpdateId(e){
 /**
  * Fonction qui vide tous les articles
  */
-function gererClicViderArticle(){
-    location.reload();
+function gererClicViderPage(){
+    let num = document.getElementById("telephone");
+    let nom = document.getElementById("nom");
+    let courriel = document.getElementById("courriel");
+    let adresse = document.getElementById("adresse");
+    while(listArticles.childElementCount > 1){
+        listArticles.lastChild.remove();
+    }
+    num.value = "";
+    num.classList.remove("is-valid");
+    num.classList.remove("is-invalid");
+
+    nom.value = "";
+    nom.classList.remove("is-valid");
+    nom.classList.remove("is-invalid");
+
+    courriel.value = "";
+    courriel.classList.remove("is-valid");
+    courriel.classList.remove("is-invalid");
+
+    adresse.value = "";
+    adresse.classList.remove("is-valid");
+    adresse.classList.remove("is-invalid");
+
+
+    inputIdArticle.value = "";
+    inputIdArticle.classList.remove("is-valid");
+    inputIdArticle.classList.remove("is-invalid");
+
+    inputNomArticle.value = "";
+
+    inputQteArticle.value = 1;
+    inputQteArticle.classList.remove("is-valid");
+    inputQteArticle.classList.remove("is-invalid");
+
+    inputPrixTArticle.value = 0;
+    inputPrixUArticle.value = 0;
+    
+    selectLivraison.value = "unselected";
+    selectLivraison.classList.remove("is-valid");
+    selectLivraison.classList.remove("is-invalid");
+
+    gererAjouterArticleSommaire();
+    gererUpdatePrixLivraison();
+    gererUpdatePrixTotal();
+
 }
 
 
@@ -527,15 +580,13 @@ function gererSelectLivraison(e){
 }
 
 
-
-
 /**
  * Fonction qui s'execute au lancement de la page
  */
 function initialisation(){
 
     btnAjouterArticle.addEventListener("click",gererClicAjouterArticle,false);
-    btnVider.addEventListener("click",gererClicViderArticle,false);
+    btnVider.addEventListener("click",gererClicViderPage,false);
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
     inputQteArticle.addEventListener("change", gererUpdatePrixLivraison,false);
