@@ -115,7 +115,7 @@ function validationCourriel(e) {
                 e.target.classList.remove("is-invalid");
                 e.target.classList.add("is-valid");
 
-                inputNum.value = clients[telephonesParCourriel[emails]].courriel;
+                inputNum.value = telephonesParCourriel[emails];
                 inputAdresse.value = clients[telephonesParCourriel[emails]].adresse;
                 inputNom.value = clients[telephonesParCourriel[emails]].nom;
             }
