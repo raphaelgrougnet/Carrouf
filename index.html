@@ -62,6 +62,7 @@
         </nav>
     </header>
     <main>
+
         <div class="d-flex align-items-center flex-column">
             <div class="container m-5 mb-3 border border-2 p-5 rounded-5">
                 <h1 id="contenu-principal" class="mb-4 text-center fs-2">Information client</h1>
@@ -73,7 +74,7 @@
                         <div id="phoneHelp" class="form-text">Format : 123-4567</div>
                         <div class="invalid-feedback">
                             Numéro de téléphone incorrect.
-                          </div>
+                        </div>
                         <datalist id="suggestNum"></datalist>
 
                     </div>
@@ -84,7 +85,8 @@
 
                     <div class="mb-3">
                         <label for="courriel" class="form-label">Courriel</label>
-                        <input type="email" class="form-control rounded" id="courriel" name="courriel">
+                        <input type="email" aria-labelledby="mailHelp" class="form-control rounded" id="courriel" name="courriel">
+                        <div id="mailHelp" class="form-text">Ex : exemple@courriel.ca</div>
                         <div class="invalid-feedback">
                             Courriel incorrect.
                         </div>
@@ -95,65 +97,73 @@
                         <input type="text" class="form-control rounded" id="adresse" name="adresse">
                     </div>
 
-                    <a id="btn-new-client" class="btn btn-secondary rounded" href="nouveau-client.html"><i class="bi bi-person-plus-fill"></i> Nouveau client</a>
+                    <a id="btn-new-client" class="btn btn-secondary rounded" href="nouveau-client.html"><i
+                            class="bi bi-person-plus-fill"></i> Nouveau client</a>
                 </div>
 
                 <hr class="solid m-5">
 
                 <h1 class="mb-4 text-center fs-2">Commande</h1>
                 <div>
-                    
+
                     <div class="col" id="commande">
                         <div id="divPrincipale0" class="row bg-primary rounded mb-3 pt-3">
                             <div class="mb-3 col-lg-4 col-xl-1">
                                 <label for="idProduit0" class="form-label">Id</label>
-                                <input type="text" class="form-control inputId rounded" id="idProduit0" name="idProduit0" placeholder="Id">
+                                <input type="text" class="form-control inputId rounded" id="idProduit0"
+                                    name="idProduit0" placeholder="Id">
                             </div>
                             <div class="mb-3 col-lg-4 col-xl-3">
                                 <label for="nomProduit0" class="form-label">Nom</label>
-                                <input type="text" class="form-control inputNom rounded" id="nomProduit0" name="nomProduit0" placeholder="Nom du produit" readonly>
+                                <input type="text" class="form-control inputNom rounded" id="nomProduit0"
+                                    name="nomProduit0" placeholder="Nom du produit" readonly>
                             </div>
                             <div class="mb-3 col-lg-4 col-xl-2">
                                 <label for="qteProduit0" class="form-label">Quantité</label>
-                                <input type="number" value="1" class="form-control inputQte rounded" id="qteProduit0" name="qteProduit0" placeholder="Quantité" min=1 readonly>
+                                <input type="number" value="1" class="form-control inputQte rounded" id="qteProduit0"
+                                    name="qteProduit0" placeholder="Quantité" min=1 readonly>
                             </div>
                             <div class="mb-3 col-lg-6 col-xl-3">
                                 <label for="prixUProduit0" class="form-label">Prix unitaire</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
-                                    <input type="text" value="0" class="form-control inputPrixU" id="prixUProduit0" name="prixUProduit0" placeholder="Prix unitaire" readonly>
+                                    <input type="text" value="0" class="form-control inputPrixU" id="prixUProduit0"
+                                        name="prixUProduit0" placeholder="Prix unitaire" readonly>
                                 </div>
                             </div>
                             <div class="mb-3 col-lg-6 col-xl-3">
                                 <label for="prixTProduit0" class="form-label">Prix total</label>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">$</span>
-                                    <input type="text" value="0" class="form-control inputPrixT" id="prixTProduit0" name="prixTProduit0" placeholder="Prix total" readonly>
+                                    <input type="text" value="0" class="form-control inputPrixT" id="prixTProduit0"
+                                        name="prixTProduit0" placeholder="Prix total" readonly>
                                 </div>
                             </div>
-                            <button id="btnSuppr0" class="btn btn-danger rounded-bottom" disabled><i id="iiiSuppr0"class="bi bi-dash-circle"></i></button>
+                            <button id="btnSuppr0" class="btn btn-danger rounded-bottom" disabled><i id="iiiSuppr0"
+                                    class="bi bi-dash-circle"></i></button>
                         </div>
                     </div>
                     <div>
-                        <button id="btnAjouter" class="btn btn-primary mb-2 fs-5 rounded"><i class="bi bi-plus-circle"></i></button>
+                        <button id="btnAjouter" class="btn btn-primary mb-2 fs-5 rounded"><i
+                                class="bi bi-plus-circle"></i></button>
                     </div>
                     <div class="p-3">
                         <select id="selectShipping" class="form-select rounded" aria-label="Mode de livraison">
-                            <option selected disabled>Selectionnez un mode de livraison</option>
+                            <option value="unselected" selected disabled>Selectionnez un mode de livraison</option>
                             <option value="magasin">Chercher en magasin</option>
                             <option value="standard">Livraison standard</option>
                             <option value="express">Livraison express</option>
                         </select>
                         <div id="priceShipping" class="valid-feedback">
-                          </div>
+                        </div>
                     </div>
-                    
+
                 </div>
 
                 <hr class="solid m-5">
 
                 <h1 class="mb-4 text-center fs-2">Sommaire</h1>
-                
+
                 <div class="border border-2 rounded p-3 mb-3">
                     <div>
                         <div class="d-flex justify-content-between">
@@ -163,36 +173,51 @@
                         <div id="sommaireArticles">
 
                         </div>
-                        
+
                     </div>
                     <hr class="solid m-4">
                     <div class="d-flex justify-content-between">
                         <p class="m-0">Livraison</p>
-                        <p id="prixLivraisonSommaire">$00.00</p>
+                        <p id="prixLivraisonSommaire">$0.00</p>
                     </div>
                     <div class="d-flex justify-content-between">
-                        
+
                         <p class="m-0">Total</p>
-                        <p class="m-0" id="prixTotalSommaire">$00.00</p>
+                        <p class="m-0" id="prixTotalSommaire">$0.00</p>
                     </div>
-                    
+
                 </div>
+
+
+                <div id="sommaire"></div>
+
+                <div class="progress rounded mb-3">
+                    <div id="progressbar" class="progress-bar progress-bar-striped progress-bar-animated rounded" style="width: 0%;" role="progressbar" aria-label="Animated striped example" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>  
+                <button id="btnVider" class="btn btn-danger mb-2 rounded"><i class="bi bi-trash3"></i> Vider la commande</button>
+                <button id="btnValider" class="btn btn-success mb-2 rounded" disabled><i class="bi bi-cart-check"> Commander</i></button>
                 
-                    
-                <div id="sommaire">
+                  
 
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header">
+                            <img src="images/favicon.ico" width="20" class="rounded me-2" alt="Icon">
+                            <strong class="me-auto">Carrouf Livraison</strong>
+                            <small>A l'instant</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            Votre commande à bien été prise en compte.<br>
+                            Vous recevrez un mail lors de son envoie.
+                        </div>
+                    </div>
                 </div>
-
-                <button id="btnVider" class="btn btn-danger mb-2 fs-5 rounded"><i class="bi bi-trash3"></i></button>
-                <button id="btnValider" class="btn btn-success mb-2 fs-5 rounded" type="submit" disabled><i class="bi bi-cart-check"></i></button>
-
             </div>
 
 
 
         </div>
-
-
     </main>
     <footer></footer>
 
