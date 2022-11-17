@@ -19,7 +19,7 @@ const modesLivraison = {
     "express" : 50
 };
 let listArticles = document.getElementById("commande");
-let nbArticles = listArticles.childElementCount;
+
 let progressBar = 0;
 
 
@@ -168,6 +168,27 @@ function gererUpdatePrix(e){
     }
 }
 
+
+/**
+ * Fonction qui actualise le prix de la livraison en fonction du nombre d'article
+ */
+ function gererUpdatePrixLivraison(){
+    if(selectLivraison.value === "express"){
+        let prixLivraisonSommaire = document.getElementById("prixLivraisonSommaire");
+        let inputsQte = document.querySelectorAll(".inputQte");
+        let nbArticle = 0;
+        
+        for (let qte of inputsQte) {
+            nbArticle += parseFloat(qte.value);
+        }
+        prixLivraisonSommaire.firstChild.replaceWith(50+(nbArticle*10)+".00");
+        
+        
+    }
+    
+}
+
+
 /**
  * Fonction qui met a jour le nom et le prix unitaire de l'article quand l'id est saisis
  * @param {Event} e Evenement
@@ -199,10 +220,10 @@ function gererUpdateId(e){
         divQte.classList.remove("is-invalid");
         divQte.classList.remove("is-valid");
         divQte.readOnly = true;
-        divQte.value = "";
+        divQte.value = "1";
     }
     
-    
+    gererUpdatePrixLivraison();
 }
 
 /**
@@ -211,6 +232,7 @@ function gererUpdateId(e){
 function gererClicViderArticle(){
     location.reload();
 }
+
 
 
 /**
@@ -290,6 +312,7 @@ function gererClicAjouterArticle(){
     inputQte.name = "qteProduit"+cpt;
     inputQte.placeholder = "Quantité";
     inputQte.min = 1;
+    inputQte.value = 1;
     inputQte.readOnly = true;
     
     divQte.appendChild(labelQte);
@@ -297,6 +320,7 @@ function gererClicAjouterArticle(){
     divPrincipale.appendChild(divQte);
 
     inputQte.addEventListener("change",gererUpdatePrix,false);
+    inputQte.addEventListener("change", gererUpdatePrixLivraison,false);
     
 
 
@@ -402,6 +426,8 @@ function gererClicAjouterArticle(){
     cpt++;
 }
 
+
+
 /**
  * 
  * @param {Event} e Event
@@ -413,7 +439,7 @@ function gererSelectLivraison(e){
     let textSelectLivraison = "Le mode de livraison sélectionné ajoutera $" + modesLivraison[e.target.value] + " CAD à la commande";
     if(e.target.value == "express"){
         textSelectLivraison += " plus $10 CAD par item unitaire";
-        prixLivraisonSommaire.firstChild.replaceWith(50+(10*listArticles.childElementCount)+".00");
+        prixLivraisonSommaire.firstChild.replaceWith(50+".00");
     }
     if(e.target.value == "standard"){
         prixLivraisonSommaire.firstChild.replaceWith(35+".00");
@@ -424,6 +450,8 @@ function gererSelectLivraison(e){
     textSelectLivraison += ".";
     comment.appendChild(document.createTextNode(textSelectLivraison));
     e.target.classList.add("is-valid");
+
+    gererUpdatePrixLivraison();
 }
 
 
@@ -438,6 +466,7 @@ function initialisation(){
     btnVider.addEventListener("click",gererClicViderArticle,false);
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     inputQteArticle.addEventListener("change",gererUpdatePrix,false);
+    inputQteArticle.addEventListener("change", gererUpdatePrixLivraison,false);
     inputIdArticle.addEventListener("change", gererUpdateId, false);
     inputNumTel.addEventListener("input", validationNumero, false);
     inputNumTel.addEventListener("input", gererListeSuggestionNumero, false);
