@@ -21,6 +21,7 @@ let champCourrielNouveau = null;
 let divErreurCourriel = null;
 let champCellNouveauClient = null;
 let divErreurCell = null;
+let divErreurSubmit = null;
 
 
 /**
@@ -157,6 +158,7 @@ function validationCellNouveauClient(){
         champCellNouveauClient.classList.remove("is-valid");
         
         msgCell = "Ce numéro de téléphone existe déjà";
+        
 
     }
     else{
@@ -169,6 +171,8 @@ function validationCellNouveauClient(){
     }
 
     divErreurCell.append(msgCell);
+
+
 }
 
 /**
@@ -176,7 +180,29 @@ function validationCellNouveauClient(){
  * @param {Event} e un événement pour un click
  */
 function gererClickAjouterClient(e){
+    let tousLesChampsSontValides = false;
+    const divErreurSubmit = document.getElementById("msg-erreur-client");
+    const p = document.createElement("p");
+    const msgErreur = document.createTextNode("Vous devez remplir tous les champs correctment"); 
+    
+    if(champAdresseNouveau.classList.contains("is-valid") && champCellNouveauClient.classList.contains("is-valid") 
+        && champCourrielNouveau.classList.contains("is-valid") && champNomNouveau.classList.contains("is-valid")){
+            tousLesChampsSontValides = true;
+        }
 
+    if (!tousLesChampsSontValides) {
+        e.preventDefault();
+        if(divErreurSubmit.firstChild != null){
+            divErreurSubmit.firstChild.remove();
+        }
+        p.append(msgErreur);
+        p.style.color = "red";
+        p.style.fontWeight = "bold";
+        p.classList.add("m-0");
+        divErreurSubmit.append(p);
+    }
+
+    
 
 }
 
@@ -189,10 +215,13 @@ function initialisation(){
     champCourrielNouveau = document.getElementById("courriel-nouveau-client");
     champCellNouveauClient = document.getElementById("cell-nouveau-client");
 
+
+
     champNomNouveau.addEventListener('change', validationNomNouveauClient, false);
     champAdresseNouveau.addEventListener('change', validationAdresseNouveauClient, false);
     champCourrielNouveau.addEventListener('change', validationCourrielNouveauClient, false);
     champCellNouveauClient.addEventListener('change', validationCellNouveauClient, false);
+    document.getElementById("validation-nouveau-client").addEventListener('submit', gererClickAjouterClient, false);
 }
 
 window.addEventListener("DOMContentLoaded", initialisation, false);

@@ -47,3 +47,12 @@
 		transform: translateX(0);
 	}
 }
+
+// Nouveau Client // 
+
+.form-nouv-client{
+
+	div{
+		@extend .m-1, .p-1;
+	}
+}
