@@ -60,36 +60,36 @@
     <main>
         <div class="d-flex align-items-center flex-column">
             <div class="container m-5 mb-3 border border-2 p-5 rounded-5">
-                <h1 class="text-center p-2 m-2">Création d'un Nouveau Client</h1>
-                <form id="validation-nouveau-client" class="form-nouv-client" method="get" action="index.html">
+                <h1 class="text-center p-2 m-2">Création d'un nouveau client</h1>
+                <form id="validation-nouveau-client" class="form-nouv-client" method="get" action="index.html" novalidate>
                     <div>
-                        <label for="nom-nouveau-client" class="form-label">Nom du Nouveau Client :</label>
-                        <input type="text" class="form-control" id="nom-nouveau-client" name="nom-nouveau-client">
+                        <label for="nom-nouveau-client" class="form-label">Nom du nouveau client :</label>
+                        <input type="text" class="form-control rounded" id="nom-nouveau-client" name="nom-nouveau-client">
                         <div id="msg-nom" class="invalid-feedback">Doit avoir entre 3 et 50 caractères non numérique
                         </div>
                     </div>
                     <div>
-                        <label for="adresse-nouveau-client" class="form-label">Adresse du Nouveau Client :</label>
-                        <input type="text" class="form-control" id="adresse-nouveau-client"
+                        <label for="adresse-nouveau-client" class="form-label">Adresse du nouveau client :</label>
+                        <input type="text" class="form-control rounded" id="adresse-nouveau-client"
                             name="adresse-nouveau-client">
                         <div id="msg-adresse" class="invalid-feedback">Doit être entre 3 et 200 caratères</div>
                     </div>
                     <div>
-                        <label for="courriel-nouveau-client" class="form-label">Courriel du Nouveau Client :</label>
-                        <input type="email" class="form-control" id="courriel-nouveau-client"
+                        <label for="courriel-nouveau-client" class="form-label">Courriel du nouveau client :</label>
+                        <input type="email" class="form-control rounded" id="courriel-nouveau-client"
                             name="courriel-nouveau-client">
                         <div id="msg-courriel" class="invalid-feedback"></div>
                         <div class="form-text">Format : exemple@courriel.ca</div>
                     </div>
                     <div>
-                        <label for="cell-nouveau-client" class="form-label">Numéro de téléphone du Nouveau Client
+                        <label for="cell-nouveau-client" class="form-label">Numéro de téléphone du nouveau client
                             :</label>
-                        <input type="tel" class="form-control" id="cell-nouveau-client" name="cell-nouveau-client">
+                        <input type="tel" class="form-control rounded" id="cell-nouveau-client" name="cell-nouveau-client">
                         <div id="msg-cell" class="invalid-feedback"></div>
                         <div class="form-text">Format : 123-4567</div>
                     </div>
                     <div>
-                        <button class="btn btn-primary" type="submit">Créer Nouveau Client</button>
+                        <button class="btn btn-primary rounded" type="submit"><i class="bi bi-person-plus-fill"></i> Créer le nouveau client</button>
                     </div>
                     <div id="msg-erreur-client">
 
