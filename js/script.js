@@ -369,7 +369,7 @@ function gererClicAjouterArticle() {
     let divCommande = document.getElementById("commande");
     let divPrincipale = document.createElement("div");
     divPrincipale.id = "divPrincipale" + cpt;
-    divPrincipale.classList = "row bg-primary rounded mb-3 pt-3";
+    divPrincipale.classList = "row bg-primary rounded mb-3 pt-3 article";
 
     ///     ID
 
@@ -449,6 +449,7 @@ function gererClicAjouterArticle() {
     inputQte.addEventListener("change", gererUpdatePrix, false);
     inputQte.addEventListener("change", gererUpdatePrixLivraison, false);
     inputQte.addEventListener("change", gererUpdatePrixTotal, false);
+    inputQte.addEventListener("change", gererAjouterArticleSommaire, false);
 
 
 
@@ -572,13 +573,13 @@ function gererSelectLivraison(e) {
     let textSelectLivraison = "Le mode de livraison sélectionné ajoutera $" + modesLivraison[e.target.value] + " CAD à la commande";
     if (e.target.value == "express") {
         textSelectLivraison += " plus $10 CAD par item unitaire";
-        prixLivraisonSommaire.firstChild.replaceWith(50 + ".00");
+        prixLivraisonSommaire.firstChild.replaceWith("$"+50 + ".00");
     }
     if (e.target.value == "standard") {
-        prixLivraisonSommaire.firstChild.replaceWith(35 + ".00");
+        prixLivraisonSommaire.firstChild.replaceWith("$"+35 + ".00");
     }
     if (e.target.value == "magasin") {
-        prixLivraisonSommaire.firstChild.replaceWith("00.00");
+        prixLivraisonSommaire.firstChild.replaceWith("$0.00");
     }
     textSelectLivraison += ".";
     comment.appendChild(document.createTextNode(textSelectLivraison));
