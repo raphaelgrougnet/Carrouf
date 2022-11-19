@@ -21,7 +21,6 @@ let champCourrielNouveau = null;
 let divErreurCourriel = null;
 let champCellNouveauClient = null;
 let divErreurCell = null;
-let divErreurSubmit = null;
 
 
 /**
