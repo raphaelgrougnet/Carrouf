@@ -6,6 +6,8 @@
     flex-shrink: 1;
 }
 
+
+
 *{
 	font-family: 'Ubuntu', sans-serif;
 	font-style: normal;
@@ -18,6 +20,10 @@
 
 .inputPrixT, .inputPrixU{
     @extend .rounded-end;
+}
+
+option:hover{
+	cursor: pointer;
 }
 
 .animatedin{animation: myAnim 1s ease 0s 1 normal forwards;}
