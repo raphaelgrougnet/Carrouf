@@ -40,22 +40,12 @@ let listArticles = document.getElementById("commande");
     let champNom = document.getElementById("nom");
     let champCourriel = document.getElementById("courriel");
     let champAdresse = document.getElementById("adresse");
-    
+    progress = 0;
     if(champAdresse.value != "" && champCourriel.value != "" && champNom.value != "" && champTel.value != ""){
         progress += 33;
     }
 
-    // if (!(champAdresse.textContent != "" && champCourriel.textContent != "" && champNom.textContent != "" && champTel.textContent != "")){
-    //     if(progress < 33){
-    //         progress = 0;
-    //     }
-    //     else{
-    //         progress -= 33;
-    //     }
-    // }
 
-    
-    
     let champIdProduit = document.getElementById("idProduit0");
     let champNomProduit = document.getElementById("nomProduit0");
     let champQteProduit = document.getElementById("qteProduit0");
@@ -66,31 +56,12 @@ let listArticles = document.getElementById("commande");
         progress += 33;
     }
 
-    // if(!(champIdProduit.textContent != "" && champNomProduit.textContent != "" && champQteProduit.textContent != "" && champPrixProduit.textContent != "" && champPrixTotalProduit.textContent != "")){
-    //     if(progress < 33){
-    //         progress = 0;
-    //     }
-    //     else{
-    //         progress -= 33;
-    //     }
-    // }
+    
 
     if(selectLivraison.value != "unselected" ){
         progress += 33;
     }
-    // else{
-        
-    //     progress = 0; 
-    // }
-
-    // if(selectLivraison.value == "unselected"){
-    //     if(progress < 33){
-    //         progress = 0;
-    //     }
-    //     else{
-    //         progress -= 33;
-    //     }
-    // }
+    
 
     if(progress == 99){
         progress = 100;
@@ -141,7 +112,7 @@ function validationNumero(e) {
         inputCourriel.classList.remove("is-invalid");
     }
 
-
+    
 
 
 }
@@ -468,6 +439,7 @@ function gererClicAjouterArticle() {
     divPrincipale.appendChild(divId);
 
     inputId.addEventListener("change", gererUpdateId, false);
+    inputId.addEventListener("change", UpdateProgressBar, false);
 
     ///     NOM
 
@@ -659,7 +631,7 @@ function gererSelectLivraison(e) {
     e.target.classList.add("is-valid");
 
     gererUpdatePrixLivraison();
-    UpdateProgressBar();
+    
 }
 
 
@@ -671,19 +643,23 @@ function initialisation() {
 
     btnAjouterArticle.addEventListener("click", gererClicAjouterArticle, false);
     btnVider.addEventListener("click", gererClicViderPage, false);
-    
+    btnAjouterArticle.addEventListener("click", UpdateProgressBar, false);
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
+    btnSupprArticle.addEventListener("click", UpdateProgressBar, false);
     inputQteArticle.addEventListener("change", gererUpdatePrix, false);
     inputQteArticle.addEventListener("change", gererUpdatePrixLivraison, false);
     inputQteArticle.addEventListener("change", gererUpdatePrixTotal, false);
     inputQteArticle.addEventListener("change", gererAjouterArticleSommaire, false);
     inputIdArticle.addEventListener("change", gererUpdateId, false);
+    inputIdArticle.addEventListener("change", UpdateProgressBar, false);
     inputNumTel.addEventListener("input", validationNumero, false);
     inputNumTel.addEventListener("input", gererListeSuggestionNumero, false);
+    inputNumTel.addEventListener("change", UpdateProgressBar, false);
     inputEmail.addEventListener("input", validationCourriel, false);
+    inputEmail.addEventListener("change", UpdateProgressBar, false);
     selectLivraison.addEventListener("input", gererSelectLivraison, false);
     selectLivraison.addEventListener("input", gererUpdatePrixTotal, false);
-
+    selectLivraison.addEventListener("input", UpdateProgressBar, false);
     
     
     ///Trucs de bootstrap
