@@ -31,7 +31,7 @@ const modesLivraison = {
 
 let listArticles = document.getElementById("commande");
 
-let progressBar = 33;
+
 
 
 /**
@@ -589,6 +589,73 @@ function gererSelectLivraison(e) {
 }
 
 /**
+ * 
+ */
+function UpdateProgressBar(){
+    let progressBar = document.getElementById("progressbar");
+    progressBar.style.width = progressBar +"%";
+    let champTel = document.getElementById("telephone");
+    let champNom = document.getElementById("nom");
+    let champCourriel = document.getElementById("courriel");
+    let champAdresse = document.getElementById("adresse");
+    
+    if(champAdresse.textContent != "" && champCourriel.textContent != "" && champNom.textContent != "" && champTel.textContent != ""){
+        progressBar.style.width += "33%";
+    }
+
+    if (!(champAdresse.textContent != "" && champCourriel.textContent != "" && champNom.textContent != "" && champTel.textContent != "")){
+        if(progressBar.style.width < "33%"){
+            progressBar.style.width = "0%";
+        }
+        else{
+            progressBar.style.width -= "33%";
+        }
+    }
+
+    
+    
+    let champIdProduit = document.getElementById("idProduit0");
+    let champNomProduit = document.getElementById("nomProduit0");
+    let champQteProduit = document.getElementById("qteProduit0");
+    let champPrixProduit = document.getElementById("prixUProduit0");
+    let champPrixTotalProduit = document.getElementById("prixTProduit0");
+
+    if(champIdProduit.textContent != "" && champNomProduit.textContent != "" && champQteProduit.textContent != "" && champPrixProduit.textContent != "" && champPrixTotalProduit.textContent != ""){
+        progressBar.style.width += "33%";
+    }
+
+    if(!(champIdProduit.textContent != "" && champNomProduit.textContent != "" && champQteProduit.textContent != "" && champPrixProduit.textContent != "" && champPrixTotalProduit.textContent != "")){
+        if(progressBar.style.width < "33%"){
+            progressBar.style.width = "0%";
+        }
+        else{
+            progressBar.style.width -= "33%";
+        }
+    }
+
+    if(selectLivraison.value != "unselected"){
+        progressBar.style.width += "33%";
+    }
+
+    if(selectLivraison.value == "unselected"){
+        if(progressBar.style.width < "33%"){
+            progressBar.style.width = "0%";
+        }
+        else{
+            progressBar.style.width -= "33%";
+        }
+    }
+
+    if(progressBar.style.width == "99%"){
+        progressBar.style.width = "100%";
+    }
+
+    
+}
+
+
+
+/**
  * Fonction qui s'execute au lancement de la page
  */
 function initialisation() {
@@ -606,6 +673,7 @@ function initialisation() {
     inputEmail.addEventListener("change", validationCourriel, false);
     selectLivraison.addEventListener("input", gererSelectLivraison, false);
     selectLivraison.addEventListener("input", gererUpdatePrixTotal, false);
+
     
     ///Trucs de bootstrap
     const toastTrigger = document.getElementById('btnValider');

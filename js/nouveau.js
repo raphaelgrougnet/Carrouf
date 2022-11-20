@@ -21,6 +21,7 @@ let champCourrielNouveau = null;
 let divErreurCourriel = null;
 let champCellNouveauClient = null;
 let divErreurCell = null;
+let divErreur = null;
 
 
 /**
@@ -204,6 +205,8 @@ function gererClickAjouterClient(e){
     
 
 }
+
+
 
 /**
  * Fonction qui s'execute au lancement de la page
