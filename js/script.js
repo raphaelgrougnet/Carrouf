@@ -33,7 +33,7 @@ const modesLivraison = {
 let listArticles = document.getElementById("commande");
 
 /**
- * 
+ * Fonction qui permet d'augmenter et reduire la progressbar en fonction du remplissage des etapes 
  */
  function UpdateProgressBar(){
     let champTel = document.getElementById("telephone");
@@ -78,6 +78,9 @@ let listArticles = document.getElementById("commande");
     if(progress == 99){
         progress = 100;
         btnCommander.disabled = false;
+    }
+    else{
+        btnCommander.disabled = true;
     }
 
     if(progressBar.style.width != progress + "%"){
@@ -651,6 +654,7 @@ function gererSelectLivraison(e) {
 
 
 
+
 /**
  * Fonction qui s'execute au lancement de la page
  */
@@ -659,6 +663,7 @@ function initialisation() {
     btnAjouterArticle.addEventListener("click", gererClicAjouterArticle, false);
     btnVider.addEventListener("click", gererClicViderPage, false);
     btnAjouterArticle.addEventListener("click", UpdateProgressBar, false);
+    btnCommander.addEventListener("click", gererClicViderPage,false);
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     btnSupprArticle.addEventListener("click", UpdateProgressBar, false);
     inputQteArticle.addEventListener("change", gererUpdatePrix, false);
@@ -678,16 +683,16 @@ function initialisation() {
     
     
     ///Trucs de bootstrap
-    const toastTrigger = document.getElementById('btnValider');
-    const toastLiveExample = document.getElementById('liveToast');
-    if (toastTrigger) {
-        toastTrigger.addEventListener('click', () => {
-            const toast = new bootstrap.Toast(toastLiveExample);
+    // const toastTrigger = document.getElementById('btnValider');
+    // const toastLiveExample = document.getElementById('liveToast');
+    // if (toastTrigger) {
+    //     toastTrigger.addEventListener('click', () => {
+    //         const toast = new bootstrap.Toast(toastLiveExample);
 
-            toast.show();
-            gererClicViderPage();
-        });
-    }
+    //         toast.show();
+    //         gererClicViderPage();
+    //     });
+    // }
 
 }
 
