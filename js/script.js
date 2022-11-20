@@ -1,5 +1,5 @@
 "use strict";
-
+const btnCommander = document.getElementById("btnValider");
 const btnAjouterArticle = document.getElementById("btnAjouter");
 const btnVider = document.getElementById("btnVider");
 let btnSupprArticle = document.getElementById("btnSuppr0");
@@ -46,13 +46,25 @@ let listArticles = document.getElementById("commande");
     }
 
 
-    let champIdProduit = document.getElementById("idProduit0");
+    /*let champIdProduit = document.getElementById("idProduit0");
     let champNomProduit = document.getElementById("nomProduit0");
     let champQteProduit = document.getElementById("qteProduit0");
     let champPrixProduit = document.getElementById("prixUProduit0");
     let champPrixTotalProduit = document.getElementById("prixTProduit0");
 
     if(champIdProduit.value != "" && champNomProduit.value != "" && champQteProduit.value != "" && champPrixProduit.value != "" && champPrixTotalProduit.value != ""){
+        progress += 33;
+    }*/
+
+    let listInputId = document.querySelectorAll(".inputId");
+    let valide = false;
+    for(let input in listInputId){
+        if(input.classList != "form-control inputId rounded is-valid"){
+            valide = true;
+        }
+    }
+
+    if(!valide){
         progress += 33;
     }
 
@@ -65,11 +77,13 @@ let listArticles = document.getElementById("commande");
 
     if(progress == 99){
         progress = 100;
+        btnCommander.disabled = false;
     }
 
     if(progressBar.style.width != progress + "%"){
         progressBar.style.width = progress + "%";
     }
+
     
 }
 
