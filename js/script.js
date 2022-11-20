@@ -2,7 +2,6 @@
 
 const btnAjouterArticle = document.getElementById("btnAjouter");
 const btnVider = document.getElementById("btnVider");
-const btnValider = document.getElementById("btnValider");
 let btnSupprArticle = document.getElementById("btnSuppr0");
 let inputQteArticle = document.getElementById("qteProduit0");
 let inputIdArticle = document.getElementById("idProduit0");
