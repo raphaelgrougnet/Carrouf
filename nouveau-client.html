@@ -62,10 +62,12 @@
         <div class="d-flex align-items-center flex-column">
             <div class="container m-5 mb-3 border border-2 p-5 rounded-5">
                 <h1 class="text-center p-2 m-2">Création d'un nouveau client</h1>
-                <form id="validation-nouveau-client" class="form-nouv-client" method="get" action="index.html" novalidate>
+                <form id="validation-nouveau-client" class="form-nouv-client" method="get" action="index.html"
+                    novalidate>
                     <div>
                         <label for="nom-nouveau-client" class="form-label">Nom du nouveau client :</label>
-                        <input type="text" class="form-control rounded" id="nom-nouveau-client" name="nom-nouveau-client">
+                        <input type="text" class="form-control rounded" id="nom-nouveau-client"
+                            name="nom-nouveau-client">
                         <div id="msg-nom" class="invalid-feedback">Doit avoir entre 3 et 50 caractères non numérique
                         </div>
                     </div>
@@ -85,37 +87,48 @@
                     <div>
                         <label for="cell-nouveau-client" class="form-label">Numéro de téléphone du nouveau client
                             :</label>
-                        <input type="tel" class="form-control rounded" id="cell-nouveau-client" name="cell-nouveau-client">
+                        <input type="tel" class="form-control rounded" id="cell-nouveau-client"
+                            name="cell-nouveau-client">
                         <div id="msg-cell" class="invalid-feedback"></div>
                         <div class="form-text">Format : 123-4567</div>
                     </div>
                     <div>
-                        <button class="btn btn-primary rounded" type="submit"><i class="bi bi-person-plus-fill"></i> Créer le nouveau client</button>
-                    </div>
-                    <div id="msg-erreur-client">
+                        <button class="btn btn-primary rounded" type="button" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"><i class="bi bi-person-plus-fill"></i> Inscription</button>
+                        <div id="msg-erreur-client">
 
-                    </div>
+                        </div>
+
+                        
                 </form>
-                <div id="confirmation" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
-                          <h4 class="modal-title">Sauvegarde Complétée</h4>
-                        </div>
-                        <div class="modal-body">
-                          <p>Le nouveau client a bien été sauvegardé</p>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                        </div>
-                      </div>
-                    </div>
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel"><img class="pb-1"
+                            src="images/favicon.ico" alt="Logo Carrouf" width="20"> Inscription chez
+                        Carrouf</h1>
+
+                </div>
+                <div class="modal-body">
+                    Vous avez bien été inscrit chez Carrouf !
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary rounded" data-bs-dismiss="modal"
+                        aria-label="Accueil" onclick="window.location.href = 'index.html';">Aller à l'accueil</button>
                 </div>
             </div>
         </div>
 
-
+    </div>
+        
     </main>
 
 
