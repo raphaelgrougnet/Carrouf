@@ -13,6 +13,7 @@ let listeNum = document.getElementById("suggestNum");
 let inputPrixUArticle = document.getElementById("prixUProduit0");
 let inputPrixTArticle = document.getElementById("prixTProduit0");
 let progressBar = document.getElementById("progressbar");
+let progress = 0;
 
 
 let cpt = 1;
@@ -655,6 +656,7 @@ function UpdateProgressBar(){
 
     if(progressBar.style.width != progressBar + "%"){
         progressBar.style.width = progressBar + "%";
+        
     }
     
 }
