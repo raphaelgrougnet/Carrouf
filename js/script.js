@@ -15,7 +15,6 @@ let inputPrixTArticle = document.getElementById("prixTProduit0");
 let progressBar = document.getElementById("progressbar");
 let progress = 0;
 
-
 let cpt = 1;
 
 /*global clients*/
@@ -33,6 +32,75 @@ const modesLivraison = {
 
 let listArticles = document.getElementById("commande");
 
+/**
+ * 
+ */
+ function UpdateProgressBar(){
+    let champTel = document.getElementById("telephone");
+    let champNom = document.getElementById("nom");
+    let champCourriel = document.getElementById("courriel");
+    let champAdresse = document.getElementById("adresse");
+    
+    if(champAdresse.value != "" && champCourriel.value != "" && champNom.value != "" && champTel.value != ""){
+        progress += 33;
+    }
+
+    // if (!(champAdresse.textContent != "" && champCourriel.textContent != "" && champNom.textContent != "" && champTel.textContent != "")){
+    //     if(progress < 33){
+    //         progress = 0;
+    //     }
+    //     else{
+    //         progress -= 33;
+    //     }
+    // }
+
+    
+    
+    let champIdProduit = document.getElementById("idProduit0");
+    let champNomProduit = document.getElementById("nomProduit0");
+    let champQteProduit = document.getElementById("qteProduit0");
+    let champPrixProduit = document.getElementById("prixUProduit0");
+    let champPrixTotalProduit = document.getElementById("prixTProduit0");
+
+    if(champIdProduit.value != "" && champNomProduit.value != "" && champQteProduit.value != "" && champPrixProduit.value != "" && champPrixTotalProduit.value != ""){
+        progress += 33;
+    }
+
+    // if(!(champIdProduit.textContent != "" && champNomProduit.textContent != "" && champQteProduit.textContent != "" && champPrixProduit.textContent != "" && champPrixTotalProduit.textContent != "")){
+    //     if(progress < 33){
+    //         progress = 0;
+    //     }
+    //     else{
+    //         progress -= 33;
+    //     }
+    // }
+
+    if(selectLivraison.value != "unselected" ){
+        progress += 33;
+    }
+    // else{
+        
+    //     progress = 0; 
+    // }
+
+    // if(selectLivraison.value == "unselected"){
+    //     if(progress < 33){
+    //         progress = 0;
+    //     }
+    //     else{
+    //         progress -= 33;
+    //     }
+    // }
+
+    if(progress == 99){
+        progress = 100;
+    }
+
+    if(progressBar.style.width != progress + "%"){
+        progressBar.style.width = progress + "%";
+    }
+    
+}
 
 
 /**
@@ -591,6 +659,7 @@ function gererSelectLivraison(e) {
     e.target.classList.add("is-valid");
 
     gererUpdatePrixLivraison();
+    UpdateProgressBar();
 }
 
 /**
@@ -656,7 +725,6 @@ function UpdateProgressBar(){
 
     if(progressBar.style.width != progressBar + "%"){
         progressBar.style.width = progressBar + "%";
-        
     }
     
 }
