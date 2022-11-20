@@ -12,7 +12,7 @@ let selectLivraison = document.getElementById("selectShipping");
 let listeNum = document.getElementById("suggestNum");
 let inputPrixUArticle = document.getElementById("prixUProduit0");
 let inputPrixTArticle = document.getElementById("prixTProduit0");
-
+let progressBar = document.getElementById("progressbar");
 
 
 let cpt = 1;
@@ -31,7 +31,6 @@ const modesLivraison = {
 };
 
 let listArticles = document.getElementById("commande");
-
 
 
 
@@ -597,23 +596,22 @@ function gererSelectLivraison(e) {
  * 
  */
 function UpdateProgressBar(){
-    let progressBar = document.getElementById("progressbar");
-    progressBar.style.width = progressBar +"%";
+    
     let champTel = document.getElementById("telephone");
     let champNom = document.getElementById("nom");
     let champCourriel = document.getElementById("courriel");
     let champAdresse = document.getElementById("adresse");
     
     if(champAdresse.textContent != "" && champCourriel.textContent != "" && champNom.textContent != "" && champTel.textContent != ""){
-        progressBar.style.width += "33%";
+        progressBar += 33;
     }
 
     if (!(champAdresse.textContent != "" && champCourriel.textContent != "" && champNom.textContent != "" && champTel.textContent != "")){
-        if(progressBar.style.width < "33%"){
-            progressBar.style.width = "0%";
+        if(progressBar < 33){
+            progressBar = 0;
         }
         else{
-            progressBar.style.width -= "33%";
+            progressBar -= 33;
         }
     }
 
@@ -626,35 +624,38 @@ function UpdateProgressBar(){
     let champPrixTotalProduit = document.getElementById("prixTProduit0");
 
     if(champIdProduit.textContent != "" && champNomProduit.textContent != "" && champQteProduit.textContent != "" && champPrixProduit.textContent != "" && champPrixTotalProduit.textContent != ""){
-        progressBar.style.width += "33%";
+        progressBar += 33;
     }
 
     if(!(champIdProduit.textContent != "" && champNomProduit.textContent != "" && champQteProduit.textContent != "" && champPrixProduit.textContent != "" && champPrixTotalProduit.textContent != "")){
-        if(progressBar.style.width < "33%"){
-            progressBar.style.width = "0%";
+        if(progressBar < 33){
+            progressBar = 0;
         }
         else{
-            progressBar.style.width -= "33%";
+            progressBar -= 33;
         }
     }
 
     if(selectLivraison.value != "unselected"){
-        progressBar.style.width += "33%";
+        progressBar += 33;
     }
 
     if(selectLivraison.value == "unselected"){
-        if(progressBar.style.width < "33%"){
-            progressBar.style.width = "0%";
+        if(progressBar < 33){
+            progressBar = 0;
         }
         else{
-            progressBar.style.width -= "33%";
+            progressBar -= 33;
         }
     }
 
-    if(progressBar.style.width == "99%"){
-        progressBar.style.width = "100%";
+    if(progressBar == 99){
+        progressBar = 100;
     }
 
+    if(progressBar.style.width != progressBar + "%"){
+        progressBar.style.width = progressBar + "%";
+    }
     
 }
 
