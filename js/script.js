@@ -415,7 +415,8 @@ function gererClicViderPage() {
     gererAjouterArticleSommaire();
     gererUpdatePrixLivraison();
     gererUpdatePrixTotal();
-
+    progress = 0;
+    UpdateProgressBar();
 }
 
 
