@@ -14,6 +14,7 @@ let inputPrixUArticle = document.getElementById("prixUProduit0");
 let inputPrixTArticle = document.getElementById("prixTProduit0");
 
 
+
 let cpt = 1;
 
 /*global clients*/
@@ -68,6 +69,8 @@ function validationNumero(e) {
     if (e.target.value.trim() === "") {
         e.target.classList.remove("is-valid");
         e.target.classList.remove("is-invalid");
+        inputCourriel.classList.remove("is-valid");
+        inputCourriel.classList.remove("is-invalid");
     }
 
 
@@ -135,6 +138,8 @@ function validationCourriel(e) {
     if (e.target.value.trim() === "") {
         e.target.classList.remove("is-valid");
         e.target.classList.remove("is-invalid");
+        inputNum.classList.remove("is-valid");
+        inputNum.classList.remove("is-invalid");
     }
 }
 
@@ -662,6 +667,7 @@ function initialisation() {
 
     btnAjouterArticle.addEventListener("click", gererClicAjouterArticle, false);
     btnVider.addEventListener("click", gererClicViderPage, false);
+    
     btnSupprArticle.addEventListener("click", gererClicSupprimerArticle, false);
     inputQteArticle.addEventListener("change", gererUpdatePrix, false);
     inputQteArticle.addEventListener("change", gererUpdatePrixLivraison, false);
@@ -670,10 +676,11 @@ function initialisation() {
     inputIdArticle.addEventListener("change", gererUpdateId, false);
     inputNumTel.addEventListener("input", validationNumero, false);
     inputNumTel.addEventListener("input", gererListeSuggestionNumero, false);
-    inputEmail.addEventListener("change", validationCourriel, false);
+    inputEmail.addEventListener("input", validationCourriel, false);
     selectLivraison.addEventListener("input", gererSelectLivraison, false);
     selectLivraison.addEventListener("input", gererUpdatePrixTotal, false);
 
+    
     
     ///Trucs de bootstrap
     const toastTrigger = document.getElementById('btnValider');
@@ -683,6 +690,7 @@ function initialisation() {
             const toast = new bootstrap.Toast(toastLiveExample);
 
             toast.show();
+            gererClicViderPage();
         });
     }
 

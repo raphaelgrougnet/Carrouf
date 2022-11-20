@@ -183,7 +183,7 @@ function gererClickAjouterClient(e){
     let tousLesChampsSontValides = false;
     const divErreurSubmit = document.getElementById("msg-erreur-client");
     const p = document.createElement("p");
-    const msgErreur = document.createTextNode("Vous devez remplir tous les champs correctment"); 
+    const msgErreur = document.createTextNode("Vous devez remplir tous les champs correctement"); 
     
     if(champAdresseNouveau.classList.contains("is-valid") && champCellNouveauClient.classList.contains("is-valid") 
         && champCourrielNouveau.classList.contains("is-valid") && champNomNouveau.classList.contains("is-valid")){
