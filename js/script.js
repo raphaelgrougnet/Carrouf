@@ -58,7 +58,7 @@ let listArticles = document.getElementById("commande");
 
     let listInputId = document.querySelectorAll(".inputId");
     let valide = false;
-    for(let input in listInputId){
+    for(let input of listInputId){
         if(input.classList != "form-control inputId rounded is-valid"){
             valide = true;
         }
