@@ -1,3 +1,8 @@
+/**
+ * Le script s'occupe de toute la logique de la page principale, ajout d'article, evenements avec les bouttons,
+ * Validation des formulaires etc...
+ */
+
 "use strict";
 const btnCommander = document.getElementById("btnValider");
 const btnAjouterArticle = document.getElementById("btnAjouter");
@@ -20,7 +25,6 @@ let cpt = 1;
 /*global clients*/
 /*global telephonesParCourriel*/
 /*global catalogue*/
-/*global bootstrap*/
 
 /* eslint-disable no-useless-escape */
 const regexCourriel = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

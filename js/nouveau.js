@@ -1,5 +1,6 @@
 /**
- * 
+ * Le script s'occupe de toute la logique de la page secondaire, evenements avec les bouttons,
+ * Validation des formulaires etc...
  */
 
 "use strict";
@@ -21,7 +22,6 @@ let champCourrielNouveau = document.getElementById("courriel-nouveau-client");
 let champCellNouveauClient = document.getElementById("cell-nouveau-client");
 let divErreurCell = document.getElementById("msg-cell");
 let divErreurCourriel = document.getElementById("msg-courriel");
-let divErreur = null;
 
 
 /**
