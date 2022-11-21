@@ -1,3 +1,8 @@
+/**
+ * Le script s'occupe de toute la logique de la page principale, ajout d'article, evenements avec les bouttons,
+ * Validation des formulaires etc...
+ */
+
 "use strict";
 const btnCommander = document.getElementById("btnValider");
 const btnAjouterArticle = document.getElementById("btnAjouter");

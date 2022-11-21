@@ -1,5 +1,6 @@
 /**
- * 
+ * Le script s'occupe de toute la logique de la page secondaire, evenements avec les bouttons,
+ * Validation des formulaires etc...
  */
 
 "use strict";
@@ -21,7 +22,6 @@ let champCourrielNouveau = null;
 let divErreurCourriel = null;
 let champCellNouveauClient = null;
 let divErreurCell = null;
-let divErreur = null;
 
 
 /**
