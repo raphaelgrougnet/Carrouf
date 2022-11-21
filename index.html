@@ -58,7 +58,8 @@
 
                     </ul>
                     <form class="d-flex">
-                        <input class="form-control  rounded-start" type="text" placeholder="Rechercher">
+                        <label class="visually-hidden" for="inputRecherche">Rechercher sur le site</label>
+                        <input id="inputRecherche" class="form-control  rounded-start" type="text" placeholder="Rechercher">
                         <button class="btn btn-secondary my-2 my-sm-0 rounded-end" type="submit"
                             aria-label="Boutton Rechercher"><i class="bi bi-search"></i></button>
                     </form>
@@ -73,9 +74,9 @@
                 <h1 id="contenu-principal" class="mb-4 text-center fs-2">Information client</h1>
                 <div>
                     <div class="mb-3">
-                        <label for="telephone" class="form-label">Numéro de téléphone</label>
+                        <label id="labelTelephone" for="telephone" class="form-label">Numéro de téléphone du client</label>
                         <input type="tel" pattern="[0-9]{3}-[0-9]{4}" class="form-control rounded" id="telephone"
-                            aria-labelledby="phoneHelp" list="suggestNum" name="telephone">
+                            aria-labelledby="labelTelephone" list="suggestNum" name="telephone">
                         <div id="phoneHelp" class="form-text">Format : 123-4567</div>
                         <div class="invalid-feedback">
                             Numéro de téléphone incorrect.
@@ -84,14 +85,14 @@
 
                     </div>
                     <div class="mb-3">
-                        <label for="nom" class="form-label">Nom</label>
-                        <input type="text" class="form-control rounded" id="nom" name="nom">
+                        <label for="nom" class="form-label" id="labelNom">Nom du client</label>
+                        <input type="text" class="form-control rounded" id="nom" name="nom" aria-labelledby="labelNom" disabled>
                     </div>
 
                     <div class="mb-3">
-                        <label for="courriel" class="form-label">Courriel</label>
-                        <input type="email" aria-labelledby="mailHelp" class="form-control rounded" id="courriel"
-                            name="courriel">
+                        <label id="labelCourriel" for="courriel" class="form-label">Courriel du client</label>
+                        <input type="email" aria-labelledby="labelCourriel" class="form-control rounded" id="courriel"
+                            name="courriel" >
                         <div id="mailHelp" class="form-text">Ex : exemple@courriel.ca</div>
                         <div class="invalid-feedback">
                             Courriel incorrect.
@@ -99,8 +100,8 @@
 
                     </div>
                     <div class="mb-3">
-                        <label for="adresse" class="form-label">Adresse</label>
-                        <input type="text" class="form-control rounded" id="adresse" name="adresse">
+                        <label for="adresse" class="form-label">Adresse du client</label>
+                        <input type="text" class="form-control rounded" id="adresse" name="adresse" disabled>
                     </div>
 
                     <a id="btn-new-client" class="btn btn-secondary rounded" href="nouveau-client.html"><i
@@ -220,7 +221,7 @@
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel"><img class="pb-1"
                                         src="images/favicon.ico" alt="Logo Carrouf" width="20"> Carrouf Livraison</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                    aria-label="Fermer"><span class="visually-hidden">Fermer</span></button>
                             </div>
                             <div class="modal-body">
                                 Votre commande à bien été prise en compte.<br>Merci d'avoir commandé chez Carrouf.

@@ -41,11 +41,11 @@ let listArticles = document.getElementById("commande");
  */
  function UpdateProgressBar(){
     let champTel = document.getElementById("telephone");
-    let champNom = document.getElementById("nom");
+    
     let champCourriel = document.getElementById("courriel");
-    let champAdresse = document.getElementById("adresse");
+    
     progress = 0;
-    if(champAdresse.value != "" && champCourriel.value != "" && champNom.value != "" && champTel.value != ""){
+    if(champCourriel.value != ""  && champTel.value != ""){
         progress += 33;
     }
 
