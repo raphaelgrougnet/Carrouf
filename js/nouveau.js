@@ -15,12 +15,12 @@ const regexCell = /^\d{3}-\d{4}$/;
 const regexNom = /\D{3,50}/;
 const regexNombre = /\d/;
 
-let champNomNouveau = null;
-let champAdresseNouveau = null;
-let champCourrielNouveau = null;
-let divErreurCourriel = null;
-let champCellNouveauClient = null;
-let divErreurCell = null;
+let champNomNouveau = document.getElementById("nom-nouveau-client");
+let champAdresseNouveau = document.getElementById("adresse-nouveau-client");
+let champCourrielNouveau = document.getElementById("courriel-nouveau-client");
+let champCellNouveauClient = document.getElementById("cell-nouveau-client");
+let divErreurCell = document.getElementById("msg-cell");
+let divErreurCourriel = document.getElementById("msg-courriel");
 let divErreur = null;
 
 
@@ -108,7 +108,6 @@ function validationAdresseNouveauClient(){
 function validationCourrielNouveauClient(){
 
     champCourrielNouveau.value = champCourrielNouveau.value.trim();
-    divErreurCourriel = document.getElementById("msg-courriel");
 
     let msgCourriel = "";
 
@@ -143,7 +142,7 @@ function validationCourrielNouveauClient(){
 function validationCellNouveauClient(){
 
     champCellNouveauClient.value = champCellNouveauClient.value.trim();
-    divErreurCell = document.getElementById("msg-cell");
+
 
     let msgCell = "";
 
@@ -212,12 +211,6 @@ function gererClickAjouterClient(e){
  * Fonction qui s'execute au lancement de la page
  */
 function initialisation(){
-    champNomNouveau = document.getElementById("nom-nouveau-client");
-    champAdresseNouveau = document.getElementById("adresse-nouveau-client");
-    champCourrielNouveau = document.getElementById("courriel-nouveau-client");
-    champCellNouveauClient = document.getElementById("cell-nouveau-client");
-
-
 
     champNomNouveau.addEventListener('change', validationNomNouveauClient, false);
     champAdresseNouveau.addEventListener('change', validationAdresseNouveauClient, false);
