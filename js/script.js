@@ -309,6 +309,7 @@ function gererClicSupprimerArticle(e) {
     gererUpdatePrixLivraison();
     gererUpdatePrixTotal();
     gererAjouterArticleSommaire();
+    UpdateProgressBar()
 }
 
 
